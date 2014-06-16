@@ -10,7 +10,8 @@ package com.genome2d.textures;
 /**
     Texture filtering types
 **/
-class GTextureFilteringType {
+class GTextureFilteringType
+{
 	inline static public var NEAREST:Int = 0;
 	inline static public var LINEAR:Int = 1;
 }
