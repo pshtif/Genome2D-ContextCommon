@@ -50,7 +50,7 @@ interface IContext {
     function getDefaultCamera():GContextCamera;
     #if swc
     function getNativeStage():Object;
-    function getNativeContext():Object;;
+    function getNativeContext():Object;
     #else
     function getNativeStage():Dynamic;
     function getNativeContext():Dynamic;
@@ -64,7 +64,8 @@ interface IContext {
     function init():Void;
     function dispose():Void;
 
-    function begin(p_red:Float, p_green:Float, p_blue:Float, p_alpha:Float, p_useDefaultCamera:Bool = true):Void;
+    function setBackgroundRGBA(p_red:Float, p_green:Float, p_blue:Float, p_alpha:Float = 1):Void;
+    function begin():Void;
     function end():Void;
 
     function draw(p_texture:GContextTexture, p_x:Float, p_y:Float, p_scaleX:Float = 1, p_scaleY:Float = 1, p_rotation:Float = 0, p_red:Float = 1, p_green:Float = 1, p_blue:Float = 1, p_alpha:Float = 1, p_blendMode:Int = 1, p_filter:GFilter = null):Void;
