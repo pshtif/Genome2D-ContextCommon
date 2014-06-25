@@ -64,7 +64,7 @@ interface IContext {
     function init():Void;
     function dispose():Void;
 
-    function setBackgroundRGBA(p_red:Float, p_green:Float, p_blue:Float, p_alpha:Float = 1):Void;
+    function setBackgroundColor(p_color:Int, p_alpha:Float = 1):Void;
     function begin():Void;
     function end():Void;
 
