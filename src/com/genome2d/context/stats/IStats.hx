@@ -21,7 +21,7 @@ interface IStats {
     function clear():Void;
 
     /**
-        Render stats to the screen
+        Render stats
     **/
     function render(p_context:IContext):Void;
 }
