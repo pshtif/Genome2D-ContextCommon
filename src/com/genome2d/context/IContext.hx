@@ -18,6 +18,7 @@ import flash.utils.Object;
 #end
 import msignal.Signal.Signal0;
 import msignal.Signal.Signal1;
+import msignal.Signal.Signal2;
 import com.genome2d.signals.GKeyboardSignal;
 import com.genome2d.textures.GContextTexture;
 import com.genome2d.signals.GMouseSignal;
@@ -38,7 +39,7 @@ interface IContext {
     var onFrame(get,null):Signal1<Float>;
     var onMouseSignal(get,null):Signal1<GMouseSignal>;
     var onKeyboardSignal(get,null):Signal1<GKeyboardSignal>;
-    var onResizeSignal(get,null):Signal2<Int,Int>;
+    var onResize(get,null):Signal2<Int,Int>;
     #else
     var onInitialized(default,null):Signal0;
     var onFailed(default,null):Signal1<String>;
@@ -46,7 +47,7 @@ interface IContext {
     var onFrame(default,null):Signal1<Float>;
     var onMouseSignal(default,null):Signal1<GMouseSignal>;
     var onKeyboardSignal(default,null):Signal1<GKeyboardSignal>;
-    var onResizeSignal(default,null):Signal2<Int,Int>;
+    var onResize(default,null):Signal2<Int,Int>;
     #end
     function getStageViewRect():GRectangle;
     function getDefaultCamera():GContextCamera;
