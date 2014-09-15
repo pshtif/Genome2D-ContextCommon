@@ -73,7 +73,7 @@ interface IContext {
 
     function draw(p_texture:GContextTexture, p_x:Float, p_y:Float, p_scaleX:Float = 1, p_scaleY:Float = 1, p_rotation:Float = 0, p_red:Float = 1, p_green:Float = 1, p_blue:Float = 1, p_alpha:Float = 1, p_blendMode:Int = 1, p_filter:GFilter = null):Void;
 
-    function drawSource(p_texture:GContextTexture, p_sourceX:Float, p_sourceY:Float, p_sourceWidth:Float, p_sourceHeight:Float, p_x:Float, p_y:Float, p_scaleX:Float = 1, p_scaleY:Float = 1, p_rotation:Float = 0, p_red:Float = 1, p_green:Float = 1, p_blue:Float = 1, p_alpha:Float = 1, p_blendMode:Int = 1, p_filter:GFilter = null):Void;
+    function drawSource(p_texture:GContextTexture, p_sourceX:Float, p_sourceY:Float, p_sourceWidth:Float, p_sourceHeight:Float, p_sourcePivotX:Float, p_sourcePivotY:Float, p_x:Float, p_y:Float, p_scaleX:Float = 1, p_scaleY:Float = 1, p_rotation:Float = 0, p_red:Float = 1, p_green:Float = 1, p_blue:Float = 1, p_alpha:Float = 1, p_blendMode:Int = 1, p_filter:GFilter = null):Void;
 
     function drawMatrix(p_texture:GContextTexture, p_a:Float, p_b:Float, p_c:Float, p_d:Float, p_tx:Float, p_ty:Float, p_red:Float = 1, p_green:Float = 1, p_blue:Float = 1, p_alpha:Float=1, p_blendMode:Int=1, p_filter:GFilter = null):Void;
 
@@ -88,7 +88,8 @@ interface IContext {
     function renderToStencil(p_stencilLayer:Int):Void;
     function renderToColor(p_stencilLayer:Int):Void;
     function setDepthTest(p_depthMask:Bool, p_compareMode:Dynamic):Void;
-    function setRenderTarget(p_texture:GContextTexture = null, p_transform:GMatrix3D = null):Void;
-    function setRenderTargets(p_textures:Array<GContextTexture>, p_transform:GMatrix3D = null):Void;
+    function getRenderTarget():GContextTexture;
+    function setRenderTarget(p_texture:GContextTexture = null, p_transform:GMatrix3D = null, p_clear:Bool = false):Void;
+    function setRenderTargets(p_textures:Array<GContextTexture>, p_transform:GMatrix3D = null, p_clear:Bool = false):Void;
 }
 #end
