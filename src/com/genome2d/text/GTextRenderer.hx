@@ -9,7 +9,10 @@ class GTextRenderer {
      */
     public var blendMode:Int = 1;
 
-    private var g2d_invalidate:Bool = false;
+    private var g2d_dirty:Bool = false;
+    inline public function isDirty():Bool {
+        return g2d_dirty;
+    }
 
     private var g2d_tracking:Float = 0;
     /*
@@ -25,7 +28,7 @@ class GTextRenderer {
     #if swc @:setter(tracking) #end
     inline private function set_tracking(p_tracking:Float):Float {
         g2d_tracking = p_tracking;
-        g2d_invalidate = true;
+        g2d_dirty = true;
         return g2d_tracking;
     }
 
@@ -43,7 +46,7 @@ class GTextRenderer {
     #if swc @:setter(lineSpace) #end
     inline private function set_lineSpace(p_value:Float):Float {
         g2d_lineSpace = p_value;
-        g2d_invalidate = true;
+        g2d_dirty = true;
         return g2d_lineSpace;
     }
 
@@ -57,7 +60,7 @@ class GTextRenderer {
     #if swc @:setter(vAlign) #end
     inline private function set_vAlign(p_value:Int):Int {
         g2d_vAlign = p_value;
-        g2d_invalidate = true;
+        g2d_dirty = true;
         return g2d_vAlign;
     }
 
@@ -71,7 +74,7 @@ class GTextRenderer {
     #if swc @:setter(hAlign) #end
     inline private function set_hAlign(p_value:Int):Int {
         g2d_hAlign = p_value;
-        g2d_invalidate = true;
+        g2d_dirty = true;
         return g2d_hAlign;
     }
 
@@ -88,7 +91,7 @@ class GTextRenderer {
     #if swc @:setter(text) #end
     inline private function set_text(p_text:String):String {
         g2d_text = p_text;
-        g2d_invalidate = true;
+        g2d_dirty = true;
         return g2d_text;
     }
 
@@ -105,7 +108,7 @@ class GTextRenderer {
     #if swc @:setter(autoSize) #end
     inline private function set_autoSize(p_value:Bool):Bool {
         g2d_autoSize = p_value;
-        g2d_invalidate = true;
+        g2d_dirty = true;
         return g2d_autoSize;
     }
 
@@ -117,14 +120,14 @@ class GTextRenderer {
     @prototype public var width(get, set):Float;
     #if swc @:getter(width) #end
     inline private function get_width():Float {
-        if (g2d_autoSize && g2d_invalidate) invalidate();
+        if (g2d_autoSize && g2d_dirty) invalidate();
 
         return g2d_width;
     }
     #if swc @:setter(width) #end
     inline private function set_width(p_value:Float):Float {
         g2d_width = p_value;
-        g2d_invalidate = true;
+        g2d_dirty = true;
         return g2d_width;
     }
 
@@ -135,15 +138,15 @@ class GTextRenderer {
     #if swc @:extern #end
     @prototype public var height(get, set):Float;
     #if swc @:getter(height) #end
-    public function get_height():Float {
-        if (g2d_autoSize && g2d_invalidate) invalidate();
+    inline private function get_height():Float {
+        if (g2d_autoSize && g2d_dirty) invalidate();
 
         return g2d_height;
     }
     #if swc @:setter(height) #end
-    public function set_height(p_value:Float):Float {
+    inline private function set_height(p_value:Float):Float {
         g2d_height = p_value;
-        g2d_invalidate = true;
+        g2d_dirty = true;
         return g2d_height;
     }
 
