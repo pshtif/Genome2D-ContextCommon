@@ -68,7 +68,7 @@ interface IContext {
     function dispose():Void;
 
     function setBackgroundColor(p_color:Int, p_alpha:Float = 1):Void;
-    function begin():Void;
+    function begin():Bool;
     function end():Void;
 
     function draw(p_texture:GContextTexture, p_x:Float, p_y:Float, p_scaleX:Float = 1, p_scaleY:Float = 1, p_rotation:Float = 0, p_red:Float = 1, p_green:Float = 1, p_blue:Float = 1, p_alpha:Float = 1, p_blendMode:Int = 1, p_filter:GFilter = null):Void;
