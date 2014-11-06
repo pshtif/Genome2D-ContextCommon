@@ -50,7 +50,7 @@ interface IContext {
     var onResize(default,null):Signal2<Int,Int>;
     #end
     function getStageViewRect():GRectangle;
-    function getDefaultCamera():GContextCamera;
+    function getDefaultCamera():GCamera;
     #if swc
     function getNativeStage():Object;
     function getNativeContext():Object;
@@ -62,7 +62,7 @@ interface IContext {
     function getMaskRect():GRectangle;
     function setMaskRect(p_maskRect:GRectangle):Void;
 
-    function setCamera(p_camera:GContextCamera):Void;
+    function setCamera(p_camera:GCamera):Void;
 
     function init():Void;
     function dispose():Void;
