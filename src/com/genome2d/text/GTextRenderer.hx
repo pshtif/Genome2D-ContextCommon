@@ -89,8 +89,8 @@ class GTextRenderer {
         return g2d_text;
     }
     #if swc @:setter(text) #end
-    inline private function set_text(p_text:String):String {
-        g2d_text = p_text;
+    inline private function set_text(p_value:String):String {
+        g2d_text = p_value;
         g2d_dirty = true;
         return g2d_text;
     }
