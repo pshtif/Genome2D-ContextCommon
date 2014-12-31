@@ -126,8 +126,10 @@ class GTextRenderer {
     }
     #if swc @:setter(width) #end
     inline private function set_width(p_value:Float):Float {
-        g2d_width = p_value;
-        g2d_dirty = true;
+        if (p_value != g2d_width) {
+            g2d_width = p_value;
+            g2d_dirty = true;
+        }
         return g2d_width;
     }
 
@@ -145,8 +147,10 @@ class GTextRenderer {
     }
     #if swc @:setter(height) #end
     inline private function set_height(p_value:Float):Float {
-        g2d_height = p_value;
-        g2d_dirty = true;
+        if (p_value == g2d_height) {
+            g2d_height = p_value;
+            g2d_dirty = true;
+        }
         return g2d_height;
     }
 

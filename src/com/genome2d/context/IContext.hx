@@ -64,7 +64,7 @@ interface IContext {
     function getMaskRect():GRectangle;
     function setMaskRect(p_maskRect:GRectangle):Void;
 
-    function setCamera(p_camera:GCamera):Void;
+    function setActiveCamera(p_camera:GCamera):Void;
     function getActiveCamera():GCamera;
 
     function init():Void;
