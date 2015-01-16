@@ -121,7 +121,6 @@ class GTextRenderer {
     #if swc @:getter(width) #end
     inline private function get_width():Float {
         if (g2d_autoSize && g2d_dirty) invalidate();
-
         return g2d_width;
     }
     #if swc @:setter(width) #end
