@@ -146,7 +146,7 @@ class GTextRenderer {
     }
     #if swc @:setter(height) #end
     inline private function set_height(p_value:Float):Float {
-        if (p_value == g2d_height) {
+        if (p_value != g2d_height) {
             g2d_height = p_value;
             g2d_dirty = true;
         }
