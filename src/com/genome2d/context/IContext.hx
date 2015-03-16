@@ -82,6 +82,8 @@ interface IContext {
 
     function drawPoly(p_texture:GTexture, p_vertices:Array<Float>, p_uvs:Array<Float>, p_x:Float, p_y:Float, p_scaleX:Float = 1, p_scaleY:Float = 1, p_rotation:Float = 0, p_red:Float = 1, p_green:Float = 1, p_blue:Float = 1, p_alpha:Float = 1, p_blendMode:Int=1, p_filter:GFilter = null):Void;
 
+    function setBlendMode(p_blendMode:Int, p_premultiplied:Bool):Void;
+
     function bindRenderer(p_renderer:Dynamic):Void;
 
     function resize(p_rect:GRectangle):Void;
