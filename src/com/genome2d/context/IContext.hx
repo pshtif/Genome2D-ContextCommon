@@ -8,7 +8,7 @@
  */
 package com.genome2d.context;
 
-#if stage3Donly
+#if genome_stage3donly
 typedef IContext = com.genome2d.context.stage3d.GStage3DContext;
 #elseif webGLonly
 typedef IContext = com.genome2d.context.webgl.GWebGLContext;
