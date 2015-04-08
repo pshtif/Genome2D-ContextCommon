@@ -88,7 +88,6 @@ interface IContext {
 
     function resize(p_rect:GRectangle):Void;
 
-    // Low level
     function clearStencil():Void;
     function renderToStencil(p_stencilLayer:Int):Void;
     function renderToColor(p_stencilLayer:Int):Void;
