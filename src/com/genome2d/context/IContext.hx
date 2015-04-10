@@ -16,14 +16,12 @@ typedef IContext = com.genome2d.context.webgl.GWebGLContext;
 #if swc
 import flash.utils.Object;
 #end
+import com.genome2d.callbacks.GCallback;
 import com.genome2d.textures.GContextTexture;
 import com.genome2d.textures.GContextTexture;
-import msignal.Signal.Signal0;
-import msignal.Signal.Signal1;
-import msignal.Signal.Signal2;
-import com.genome2d.signals.GKeyboardSignal;
+import com.genome2d.callbacks.GKeyboardInput;
 import com.genome2d.textures.GTexture;
-import com.genome2d.signals.GMouseSignal;
+import com.genome2d.callbacks.GMouseInput;
 import com.genome2d.geom.GRectangle;
 import com.genome2d.geom.GMatrix3D;
 import com.genome2d.context.filters.GFilter;
@@ -35,21 +33,21 @@ interface IContext {
     function hasFeature(p_feature:Int):Bool;
 
     #if flash
-    var onInitialized(get,null):Signal0;
-    var onFailed(get,null):Signal1<String>;
-    var onInvalidated(get,null):Signal0;
-    var onFrame(get,null):Signal1<Float>;
-    var onMouseSignal(get,null):Signal1<GMouseSignal>;
-    var onKeyboardSignal(get,null):Signal1<GKeyboardSignal>;
-    var onResize(get,null):Signal2<Int,Int>;
+    var onInitialized(get,null):GCallback0;
+    var onFailed(get,null):GCallback1<String>;
+    var onInvalidated(get,null):GCallback0;
+    var onFrame(get,null):GCallback1<Float>;
+    var onMouseInput(get,null):GCallback1<GMouseInput>;
+    var onKeyboardInput(get,null):GCallback1<GKeyboardInput>;
+    var onResize(get,null):GCallback2<Int,Int>;
     #else
-    var onInitialized(default,null):Signal0;
-    var onFailed(default,null):Signal1<String>;
-    var onInvalidated(default,null):Signal0;
-    var onFrame(default,null):Signal1<Float>;
-    var onMouseSignal(default,null):Signal1<GMouseSignal>;
-    var onKeyboardSignal(default,null):Signal1<GKeyboardSignal>;
-    var onResize(default,null):Signal2<Int,Int>;
+    var onInitialized(default,null):GCallback0;
+    var onFailed(default,null):GCallback1<String>;
+    var onInvalidated(default,null):GCallback0;
+    var onFrame(default,null):GCallback1<Float>;
+    var onMouseInput(default,null):GCallback1<GMouseInput>;
+    var onKeyboardInput(default,null):GCallback1<GKeyboardInput>;
+    var onResize(default,null):GCallback2<Int,Int>;
     #end
     function getStageViewRect():GRectangle;
     function getDefaultCamera():GCamera;
