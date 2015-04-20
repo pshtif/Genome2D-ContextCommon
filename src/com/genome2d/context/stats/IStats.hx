@@ -8,7 +8,7 @@
  */
 package com.genome2d.context.stats;
 
-import com.genome2d.context.IContext;
+import com.genome2d.context.IGContext;
 
 /**
     Interface for implementing custom stats class
@@ -23,5 +23,5 @@ interface IStats {
     /**
         Render stats
     **/
-    function render(p_context:IContext):Void;
+    function render(p_context:IGContext):Void;
 }

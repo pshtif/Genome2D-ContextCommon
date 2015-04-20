@@ -1,8 +1,8 @@
 package com.genome2d.text;
 import com.genome2d.Genome2D;
-import com.genome2d.context.IContext;
+import com.genome2d.context.IGContext;
 class GTextRenderer {
-    private var g2d_context:IContext;
+    private var g2d_context:IGContext;
 
     /*
      *  Blend mode used for rendering

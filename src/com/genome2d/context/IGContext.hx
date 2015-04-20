@@ -9,27 +9,25 @@
 package com.genome2d.context;
 
 #if genome_stage3donly
-typedef IContext = com.genome2d.context.stage3d.GStage3DContext;
+typedef IGContext = com.genome2d.context.stage3d.GStage3DContext;
 #elseif webGLonly
-typedef IContext = com.genome2d.context.webgl.GWebGLContext;
+typedef IGContext = com.genome2d.context.webgl.GWebGLContext;
 #else
 #if swc
 import flash.utils.Object;
 #end
-import com.genome2d.callbacks.GCallback;
-import com.genome2d.textures.GContextTexture;
-import com.genome2d.textures.GContextTexture;
-import com.genome2d.callbacks.GKeyboardInput;
-import com.genome2d.textures.GTexture;
 import com.genome2d.callbacks.GMouseInput;
-import com.genome2d.geom.GRectangle;
-import com.genome2d.geom.GMatrix3D;
 import com.genome2d.context.filters.GFilter;
+import com.genome2d.geom.GMatrix3D;
+import com.genome2d.geom.GRectangle;
+import com.genome2d.input.GKeyboardInput;
+import com.genome2d.textures.GContextTexture;
+import com.genome2d.textures.GTexture;
 
 /**
     Interface for all Genome2D contexts
 **/
-interface IContext {
+interface IGContext {
     function hasFeature(p_feature:Int):Bool;
 
     #if flash
