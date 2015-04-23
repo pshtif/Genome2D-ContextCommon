@@ -16,11 +16,11 @@ typedef IGContext = com.genome2d.context.webgl.GWebGLContext;
 #if swc
 import flash.utils.Object;
 #end
-import com.genome2d.callbacks.GMouseInput;
 import com.genome2d.context.filters.GFilter;
 import com.genome2d.geom.GMatrix3D;
 import com.genome2d.geom.GRectangle;
 import com.genome2d.input.GKeyboardInput;
+import com.genome2d.input.GMouseInput;
 import com.genome2d.textures.GContextTexture;
 import com.genome2d.textures.GTexture;
 

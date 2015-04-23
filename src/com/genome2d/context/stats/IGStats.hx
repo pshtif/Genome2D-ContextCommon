@@ -13,7 +13,7 @@ import com.genome2d.context.IGContext;
 /**
     Interface for implementing custom stats class
 **/
-interface IStats {
+interface IGStats {
 
     /**
         Clear stats at the beginning of the rendering
