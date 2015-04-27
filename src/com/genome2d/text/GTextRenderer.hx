@@ -78,6 +78,7 @@ class GTextRenderer {
         return g2d_hAlign;
     }
 
+	private var g2d_textLength:Int;
     private var g2d_text:String = "";
     /*
      *  Text
@@ -91,6 +92,7 @@ class GTextRenderer {
     #if swc @:setter(text) #end
     inline private function set_text(p_value:String):String {
         g2d_text = p_value;
+		g2d_textLength = g2d_text.length;
         g2d_dirty = true;
         return g2d_text;
     }
