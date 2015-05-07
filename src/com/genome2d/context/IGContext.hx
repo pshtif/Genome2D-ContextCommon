@@ -7,6 +7,7 @@
  *	License:: ./doc/LICENSE.md (https://github.com/pshtif/Genome2D/blob/master/LICENSE.md)
  */
 package com.genome2d.context;
+import com.genome2d.callbacks.GCallback;
 
 #if genome_stage3donly
 typedef IGContext = com.genome2d.context.stage3d.GStage3DContext;
@@ -29,6 +30,8 @@ import com.genome2d.callbacks.GCallback;
 **/
 interface IGContext {
     function hasFeature(p_feature:Int):Bool;
+	
+	var g2d_onMouseInputInternal:GMouseInput->Void;
 
 	var g2d_onMouseInputInternal:GMouseInput->Void;
 	
@@ -37,7 +40,7 @@ interface IGContext {
     var onFailed(get,null):GCallback1<String>;
     var onInvalidated(get,null):GCallback0;
     var onFrame(get,null):GCallback1<Float>;
-    var onMouseInput(get,null):GCallback1<GMouseInput>;
+    var onMouseInput(get, null):GCallback1<GMouseInput>;
     var onKeyboardInput(get,null):GCallback1<GKeyboardInput>;
     var onResize(get,null):GCallback2<Int,Int>;
     #else
@@ -45,7 +48,7 @@ interface IGContext {
     var onFailed(default,null):GCallback1<String>;
     var onInvalidated(default,null):GCallback0;
     var onFrame(default,null):GCallback1<Float>;
-    var onMouseInput(default,null):GCallback1<GMouseInput>;
+    var onMouseInput(default, null):GCallback1<GMouseInput>;
     var onKeyboardInput(default,null):GCallback1<GKeyboardInput>;
     var onResize(default,null):GCallback2<Int,Int>;
     #end
