@@ -21,8 +21,8 @@ import com.genome2d.geom.GMatrix3D;
 import com.genome2d.geom.GRectangle;
 import com.genome2d.input.GKeyboardInput;
 import com.genome2d.input.GMouseInput;
-import com.genome2d.textures.GContextTexture;
 import com.genome2d.textures.GTexture;
+import com.genome2d.callbacks.GCallback;
 
 /**
     Interface for all Genome2D contexts
@@ -30,6 +30,8 @@ import com.genome2d.textures.GTexture;
 interface IGContext {
     function hasFeature(p_feature:Int):Bool;
 
+	var g2d_onMouseInputInternal:GMouseInput->Void;
+	
     #if flash
     var onInitialized(get,null):GCallback0;
     var onFailed(get,null):GCallback1<String>;
@@ -88,8 +90,8 @@ interface IGContext {
     function renderToStencil(p_stencilLayer:Int):Void;
     function renderToColor(p_stencilLayer:Int):Void;
     function setDepthTest(p_depthMask:Bool, p_compareMode:Dynamic):Void;
-    function getRenderTarget():GContextTexture;
-    function setRenderTarget(p_texture:GContextTexture = null, p_transform:GMatrix3D = null, p_clear:Bool = false):Void;
-    function setRenderTargets(p_textures:Array<GContextTexture>, p_transform:GMatrix3D = null, p_clear:Bool = false):Void;
+    function getRenderTarget():GTexture;
+    function setRenderTarget(p_texture:GTexture = null, p_transform:GMatrix3D = null, p_clear:Bool = false):Void;
+    function setRenderTargets(p_textures:Array<GTexture>, p_transform:GMatrix3D = null, p_clear:Bool = false):Void;
 }
 #end
