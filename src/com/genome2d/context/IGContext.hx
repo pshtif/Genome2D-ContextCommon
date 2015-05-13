@@ -32,8 +32,6 @@ interface IGContext {
     function hasFeature(p_feature:Int):Bool;
 	
 	var g2d_onMouseInputInternal:GMouseInput->Void;
-
-	var g2d_onMouseInputInternal:GMouseInput->Void;
 	
     #if flash
     var onInitialized(get,null):GCallback0;
