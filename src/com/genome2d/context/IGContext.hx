@@ -11,7 +11,7 @@ import com.genome2d.callbacks.GCallback;
 
 #if genome_stage3donly
 typedef IGContext = com.genome2d.context.stage3d.GStage3DContext;
-#elseif webGLonly
+#elseif webglonly
 typedef IGContext = com.genome2d.context.webgl.GWebGLContext;
 #else
 #if swc
