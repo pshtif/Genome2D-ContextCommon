@@ -361,7 +361,11 @@ class GTextureBase implements IGPrototypable
         g2d_source = null;
         GTextureManager.g2d_removeTexture(cast this);
 		
-		if (g2d_onDisposed != null) g2d_onDisposed.dispatch(cast this);
+		if (g2d_onDisposed != null) {
+			g2d_onDisposed.dispatch(cast this);
+			g2d_onDisposed.removeAll();
+		}
+		if (g2d_onInvalidated != null) g2d_onInvalidated.removeAll();
     }
 
     public function getAlphaAtUV(p_u:Float, p_v:Float):Float {
