@@ -372,16 +372,16 @@ class GTextureBase implements IGPrototypable
 		return 1;
     }
 	
-	private function parentInvalidated_handler(texture:GTexture):Void {
-		g2d_gpuWidth = texture.g2d_gpuWidth;
-		g2d_gpuHeight = texture.g2d_gpuHeight;
+	private function parentInvalidated_handler(p_texture:GTexture):Void {
+		g2d_gpuWidth = p_texture.g2d_gpuWidth;
+		g2d_gpuHeight = p_texture.g2d_gpuHeight;
 		
 		invalidateUV();
 		
 		if (g2d_onInvalidated != null) g2d_onInvalidated.dispatch(cast this);
 	}
 	
-	private function parentDisposed_handler(texture:GTexture):Void {
+	private function parentDisposed_handler(p_texture:GTexture):Void {
 		dispose();
 	}
 	
