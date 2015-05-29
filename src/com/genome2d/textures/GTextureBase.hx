@@ -11,6 +11,7 @@ package com.genome2d.textures;
 import com.genome2d.callbacks.GCallback.GCallback0;
 import com.genome2d.callbacks.GCallback.GCallback1;
 import com.genome2d.context.GContextFeature;
+import com.genome2d.context.IGContext;
 import com.genome2d.context.stage3d.GStage3DContext;
 import com.genome2d.debug.GDebug;
 import com.genome2d.geom.GRectangle;
@@ -27,6 +28,8 @@ import flash.utils.Object;
 @:access(com.genome2d.textures.GTextureManager)
 class GTextureBase implements IGPrototypable
 {
+	private var g2d_context:IGContext;
+	
 	private var g2d_onInvalidated:GCallback1<GTexture>;
 	
 	/**
@@ -310,7 +313,8 @@ class GTextureBase implements IGPrototypable
 
 	static private var g2d_instanceCount:Int = 0;
 
-    public function new(p_id:String, p_source:Object) {
+    public function new(p_context:IGContext, p_id:String, p_source:Object) {
+		g2d_context = p_context;
 		g2d_id = p_id;
         g2d_nativeWidth = g2d_nativeHeight = 0;
 		g2d_gpuWidth = g2d_gpuHeight = 0;

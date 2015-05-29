@@ -1,6 +1,7 @@
 package com.genome2d.textures;
 import com.genome2d.assets.GImageAsset;
 import com.genome2d.assets.GImageAssetType;
+import com.genome2d.context.IGContext;
 import com.genome2d.debug.GDebug;
 import com.genome2d.geom.GRectangle;
 import com.genome2d.textures.GTexture;
@@ -11,7 +12,8 @@ import flash.utils.ByteArray;
 
 @:access(com.genome2d.textures.GTexture)
 class GTextureManager {
-    static public function init():Void {
+	static private var g2d_context:IGContext;
+    static public function init(p_context:IGContext):Void {
         g2d_textures = new Map<String,GTexture>();
     }
 
@@ -77,27 +79,27 @@ class GTextureManager {
 			var imageAsset:GImageAsset = cast p_source;
 			switch (imageAsset.type) {
 				case GImageAssetType.BITMAPDATA:
-					texture = new GTexture(p_id, imageAsset.bitmapData);
+					texture = new GTexture(g2d_context, p_id, imageAsset.bitmapData);
 				case GImageAssetType.ATF:
-					texture = new GTexture(p_id, imageAsset.bytes);
+					texture = new GTexture(g2d_context, p_id, imageAsset.bytes);
 			}
 			
 		// Create from bitmap data
 		} else if (Std.is(p_source, BitmapData)) {
-			texture = new GTexture(p_id, p_source);
+			texture = new GTexture(g2d_context, p_id, p_source);
 			
 		// Create from ATF byte array
 		} else if (Std.is(p_source, ByteArray)) {
-			texture = new GTexture(p_id, p_source);
+			texture = new GTexture(g2d_context, p_id, p_source);
 			
 		// Create from Embedded
 		} else if (Std.is(p_source, Class)) {
 			var bitmap:Bitmap = cast Type.createInstance(p_source, []);
-			texture = new GTexture(p_id, bitmap.bitmapData);
+			texture = new GTexture(g2d_context, p_id, bitmap.bitmapData);
 			
 		// Create render texture
 		} else if (Std.is(p_source, GRectangle)) {
-			texture = new GTexture(p_id, p_source);
+			texture = new GTexture(g2d_context, p_id, p_source);
 		}
 		
 		if (texture != null) {
@@ -110,7 +112,7 @@ class GTextureManager {
     }
 	
 	static public function createSubTexture(p_id:String, p_texture:GTexture, p_region:GRectangle, p_frame:GRectangle = null, p_prefixParentId:Bool = true):GTexture {
-		var texture:GTexture = new GTexture(p_prefixParentId?p_texture.id+"_"+p_id:p_id, p_texture);
+		var texture:GTexture = new GTexture(g2d_context, p_prefixParentId?p_texture.id+"_"+p_id:p_id, p_texture);
 		
 		texture.region = p_region;
 		
@@ -124,7 +126,7 @@ class GTextureManager {
 	}
 
     static public function createRenderTexture(p_id:String, p_width:Int, p_height:Int, p_scaleFactor:Float = 1):GTexture {
-        var texture:GTexture = new GTexture(p_id, new GRectangle(0,0,p_width, p_height));
+        var texture:GTexture = new GTexture(g2d_context, p_id, new GRectangle(0,0,p_width, p_height));
         texture.invalidateNativeTexture(false);
         return texture;
     }
