@@ -92,6 +92,7 @@ interface IGContext {
     function renderToColor(p_stencilLayer:Int):Void;
     function setDepthTest(p_depthMask:Bool, p_compareMode:Dynamic):Void;
     function getRenderTarget():GTexture;
+	function getRenderTargetMatrix():GMatrix3D;
     function setRenderTarget(p_texture:GTexture = null, p_transform:GMatrix3D = null, p_clear:Bool = false):Void;
     function setRenderTargets(p_textures:Array<GTexture>, p_transform:GMatrix3D = null, p_clear:Bool = false):Void;
 }

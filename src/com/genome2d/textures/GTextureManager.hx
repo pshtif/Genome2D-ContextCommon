@@ -14,6 +14,7 @@ import flash.utils.ByteArray;
 class GTextureManager {
 	static private var g2d_context:IGContext;
     static public function init(p_context:IGContext):Void {
+		g2d_context = p_context;
         g2d_textures = new Map<String,GTexture>();
     }
 
@@ -101,7 +102,7 @@ class GTextureManager {
 		} else if (Std.is(p_source, GRectangle)) {
 			texture = new GTexture(g2d_context, p_id, p_source);
 		}
-		
+
 		if (texture != null) {
 			texture.repeatable = p_repeatable;
 			texture.scaleFactor = p_scaleFactor;
