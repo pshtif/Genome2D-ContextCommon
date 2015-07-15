@@ -11,7 +11,7 @@ import com.genome2d.callbacks.GCallback;
 
 #if genome_stage3donly
 typedef IGContext = com.genome2d.context.stage3d.GStage3DContext;
-#elseif webglonly
+#elseif genome_webglonly
 typedef IGContext = com.genome2d.context.webgl.GWebGLContext;
 #else
 #if swc
@@ -24,6 +24,7 @@ import com.genome2d.input.GKeyboardInput;
 import com.genome2d.input.GMouseInput;
 import com.genome2d.textures.GTexture;
 import com.genome2d.callbacks.GCallback;
+import com.genome2d.context.GCamera;
 
 /**
     Interface for all Genome2D contexts

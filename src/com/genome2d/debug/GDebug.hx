@@ -8,7 +8,9 @@ import haxe.PosInfos;
 class GDebug {
     static private var g2d_console:String = "";
     static public var showPriority:Int = 1;
+	#if flash
     static public var useNativeTrace:Bool = true;
+	#end
     static public var stackTrace:Bool = true;
 
     static private var g2d_onDebug:GCallback1<String>;
@@ -118,7 +120,11 @@ class GDebug {
 
     inline static public function trace(p_msg:String):Void {
         g2d_console += p_msg;
+		#if flash
         if (useNativeTrace) untyped __global__["trace"](p_msg);
+		#elseif js
+		trace(p_msg);
+		#end
         if (g2d_onDebug != null) g2d_onDebug.dispatch(p_msg);
     }
 }

@@ -6,9 +6,16 @@ import com.genome2d.debug.GDebug;
 import com.genome2d.geom.GRectangle;
 import com.genome2d.textures.GTexture;
 import com.genome2d.textures.GTextureBase;
-import flash.display.Bitmap;
+
+#if flash
 import flash.display.BitmapData;
+import flash.display.Bitmap;
 import flash.utils.ByteArray;
+#end
+
+#if js
+import js.html.ImageElement;
+#end
 
 @:access(com.genome2d.textures.GTexture)
 class GTextureManager {
@@ -74,21 +81,24 @@ class GTextureManager {
 	
 	static public function createTexture(p_id:String, p_source:Dynamic, p_scaleFactor:Float = 1, p_repeatable:Bool = false, p_format:String = "bgra"):GTexture {
 		var texture:GTexture = null;
-		
 		// Create from asset
 		if (Std.is(p_source, GImageAsset)) {
 			var imageAsset:GImageAsset = cast p_source;
 			switch (imageAsset.type) {
+				#if flash
 				case GImageAssetType.BITMAPDATA:
 					texture = new GTexture(g2d_context, p_id, imageAsset.bitmapData);
 				case GImageAssetType.ATF:
 					texture = new GTexture(g2d_context, p_id, imageAsset.bytes);
+				#elseif js
+				case GImageAssetType.IMAGEELEMENT:
+					texture = new GTexture(g2d_context, p_id, imageAsset.imageElement);
+				#end
 			}
-			
+		#if flash
 		// Create from bitmap data
 		} else if (Std.is(p_source, BitmapData)) {
 			texture = new GTexture(g2d_context, p_id, p_source);
-			
 		// Create from ATF byte array
 		} else if (Std.is(p_source, ByteArray)) {
 			texture = new GTexture(g2d_context, p_id, p_source);
@@ -97,7 +107,10 @@ class GTextureManager {
 		} else if (Std.is(p_source, Class)) {
 			var bitmap:Bitmap = cast Type.createInstance(p_source, []);
 			texture = new GTexture(g2d_context, p_id, bitmap.bitmapData);
-			
+		#elseif js
+		} else if (Std.is(p_source, ImageElement)) {
+			texture = new GTexture(g2d_context, p_id, p_source);
+		#end
 		// Create render texture
 		} else if (Std.is(p_source, GRectangle)) {
 			texture = new GTexture(g2d_context, p_id, p_source);
