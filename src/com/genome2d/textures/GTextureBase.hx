@@ -383,21 +383,21 @@ class GTextureBase implements IGPrototypable
 	}
 	
     public function toString():String {
-        return "[Texture: "+id+"]";
+        return "@"+id;
     }
 	
 	/*
 	 *	Get a reference value
 	 */
 	public function toReference():String {
-		return g2d_id;
+		return "@"+g2d_id;
 	}
 	
 	/*
 	 * 	Get an instance from reference
 	 */
 	static public function fromReference(p_reference:String) {
-		return GTextureManager.getTexture(p_reference);
+		return GTextureManager.getTexture(p_reference.substr(1));
 	}
 	
 	/****************************************************************************************************

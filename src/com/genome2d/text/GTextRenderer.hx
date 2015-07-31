@@ -13,6 +13,20 @@ class GTextRenderer {
     inline public function isDirty():Bool {
         return g2d_dirty;
     }
+	
+	private var g2d_fontScale:Float = 1;
+    #if swc @:extern #end
+    public var fontScale(get, set):Float;
+    #if swc @:getter(fontScale) #end
+    inline private function get_fontScale():Float {
+        return g2d_fontScale;
+    }
+    #if swc @:setter(fontScale) #end
+    inline private function set_fontScale(p_value:Float):Float {
+        g2d_fontScale = p_value;
+        g2d_dirty = true;
+        return g2d_fontScale;
+    }
 
     private var g2d_tracking:Float = 0;
     /*
