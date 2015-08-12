@@ -52,6 +52,7 @@ class GMouseInput {
 		input.nativeCaptured = nativeCaptured;
 		input.delta = delta;
 		input.camera = camera;
+		input.g2d_captured = g2d_captured;
 		
 		return input;
 	}
