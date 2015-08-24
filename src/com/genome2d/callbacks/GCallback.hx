@@ -74,7 +74,8 @@ class GCallback0 extends GCallback<Void -> Void>
 			g2d_iteratingDispatch++;
         }
 
-        while (g2d_listenersOnce.length>0) {
+		var onceCount:Int = g2d_listenersOnce.length;
+        for (i in 0...onceCount) {
             g2d_listenersOnce.shift()();
         }
     }
@@ -93,7 +94,8 @@ class GCallback1<TValue> extends GCallback<TValue -> Void>
 			g2d_iteratingDispatch++;
         }
 
-        while (g2d_listenersOnce.length>0) {
+        var onceCount:Int = g2d_listenersOnce.length;
+        for (i in 0...onceCount) {
             g2d_listenersOnce.shift()(p_value);
         }
     }
@@ -115,7 +117,8 @@ class GCallback2<TValue1,TValue2> extends GCallback<TValue1 -> TValue2 -> Void>
 			g2d_iteratingDispatch++;
         }
 
-        while (g2d_listenersOnce.length>0) {
+        var onceCount:Int = g2d_listenersOnce.length;
+        for (i in 0...onceCount) {
             g2d_listeners.shift()(p_value1, p_value2);
         }
     }
