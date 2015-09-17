@@ -85,6 +85,7 @@ interface IGContext {
     function setBlendMode(p_blendMode:Int, p_premultiplied:Bool):Void;
 
     function bindRenderer(p_renderer:Dynamic):Void;
+	function flushActiveRenderer():Void;
 
     function resize(p_rect:GRectangle):Void;
 
