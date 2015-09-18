@@ -8,6 +8,7 @@
  */
 package com.genome2d.context;
 import com.genome2d.callbacks.GCallback;
+import com.genome2d.context.IGRenderer;
 
 #if genome_stage3donly
 typedef IGContext = com.genome2d.context.stage3d.GStage3DContext;
@@ -84,8 +85,9 @@ interface IGContext {
 
     function setBlendMode(p_blendMode:Int, p_premultiplied:Bool):Void;
 
-    function bindRenderer(p_renderer:Dynamic):Void;
-	function flushActiveRenderer():Void;
+    function setRenderer(p_renderer:IGRenderer):Void;
+	function flushRenderer():Void;
+	function getRenderer():IGRenderer;
 
     function resize(p_rect:GRectangle):Void;
 
