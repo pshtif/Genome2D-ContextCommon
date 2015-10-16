@@ -120,6 +120,8 @@ class GTextureManager {
 			texture.repeatable = p_repeatable;
 			texture.scaleFactor = p_scaleFactor;
 			texture.invalidateNativeTexture(false);
+		} else {
+			GDebug.error("Invalid texture source.");
 		}
 
         return texture;
