@@ -173,7 +173,7 @@ class GTextRenderer {
         g2d_context = Genome2D.getInstance().getContext();
     }
 
-    public function render(p_x:Float, p_y:Float, p_scaleX:Float, p_scaleY:Float, p_rotation:Float):Void {
+    public function render(p_x:Float, p_y:Float, p_scaleX:Float, p_scaleY:Float, p_rotation:Float, p_red:Float, p_green:Float, p_blue:Float, p_alpha:Float):Void {
     }
 
     public function invalidate():Void {
