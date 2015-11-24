@@ -67,9 +67,9 @@ class GTextureManager {
         return found;
     }
 
-    static public function disposeAll():Void {
+    static public function disposeAll(p_disposeSource:Bool = false):Void {
         for (texture in g2d_textures) {
-			texture.dispose();
+			if (texture.id.indexOf("g2d_") != 0) texture.dispose(p_disposeSource);
         }
     }
 
