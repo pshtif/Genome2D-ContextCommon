@@ -354,7 +354,7 @@ class GTextureBase implements IGPrototypable
         return false;
     }
 
-    public function dispose():Void {		
+    public function dispose(p_disposeSource:Bool = false):Void {		
         g2d_source = null;
         GTextureManager.g2d_removeTexture(cast this);
 		
