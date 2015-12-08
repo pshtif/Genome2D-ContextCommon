@@ -10,7 +10,7 @@ package com.genome2d.context;
 
 interface IGRenderer
 {
-    function bind(p_context:IGContext, p_reinitialize:Bool):Void;
+    function bind(p_context:IGContext, p_reinitialize:Int):Void;
 	
 	function push():Void;
 	
