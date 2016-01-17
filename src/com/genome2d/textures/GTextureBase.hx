@@ -306,7 +306,7 @@ class GTextureBase implements IGPrototypable
 
 	static private var g2d_instanceCount:Int = 0;
 
-    public function new(p_context:IGContext, p_id:String, p_source:Dynamic) {
+    public function new(p_context:IGContext, p_id:String, p_source:Dynamic, p_format:String) {
 		g2d_context = p_context;
 		g2d_id = p_id;
         g2d_nativeWidth = g2d_nativeHeight = 0;
@@ -322,7 +322,7 @@ class GTextureBase implements IGPrototypable
 
 		g2d_instanceCount++;
 		g2d_contextId = g2d_instanceCount;
-        g2d_format = "bgra";
+        g2d_format = p_format;//"bgra";
         g2d_repeatable = false;
 
         g2d_filteringType = GTextureManager.defaultFilteringType;
