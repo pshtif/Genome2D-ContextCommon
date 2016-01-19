@@ -12,6 +12,7 @@ class GKeyboardInputType {
     inline static public var KEY_DOWN:String = "keyDown";
     inline static public var KEY_UP:String = "keyUp";
 
+	#if flash
     inline static public function fromNative(p_nativeType:String):String {
         var type:String = "";
         switch (p_nativeType) {
@@ -23,4 +24,17 @@ class GKeyboardInputType {
 
         return type;
     }
+	#elseif js
+	inline static public function fromNative(p_nativeType:String):String {
+        var type:String = "";
+        switch (p_nativeType) {
+            case "keyup":
+                type = KEY_UP;
+            case "keydown":
+                type = KEY_DOWN;
+        }
+
+        return type;
+    }
+	#end
 }
