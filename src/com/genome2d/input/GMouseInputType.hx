@@ -42,7 +42,7 @@ class GMouseInputType {
                 type = MOUSE_MOVE;
             case "mousedown" | "touchstart":
                 type = MOUSE_DOWN;
-            case "mouseup" | "touchend":
+            case "mouseup" | "touchend" | "touchcancel":
                 type = MOUSE_UP;
         }
 
