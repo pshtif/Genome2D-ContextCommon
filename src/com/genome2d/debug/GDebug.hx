@@ -7,6 +7,7 @@ import haxe.PosInfos;
 
 class GDebug {
     static private var g2d_console:String = "";
+	
     static public var showPriority:Int = 1;
 	#if flash
     static public var useNativeTrace:Bool = true;
