@@ -69,6 +69,8 @@ class GViewport {
 	}
 
     private function resize_handler(p_width:Float, p_height:Float):Void {
+		p_width *= g2d_cameraController.contextCamera.normalizedViewWidth;
+		p_height *= g2d_cameraController.contextCamera.normalizedViewHeight;
         var aw:Float = p_width/viewRight;
         var ah:Float = p_height/viewBottom;
 
