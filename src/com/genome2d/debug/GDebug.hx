@@ -1,6 +1,6 @@
 package com.genome2d.debug;
 
-import com.genome2d.callbacks.GCallback.GCallback1;
+import com.genome2d.callbacks.GCallback.GCallback3;
 import com.genome2d.debug.GDebugPriority;
 import com.genome2d.debug.GDebugPriority;
 import haxe.PosInfos;
@@ -14,12 +14,12 @@ class GDebug {
 	#end
     static public var stackTrace:Bool = true;
 
-    static private var g2d_onDebug:GCallback1<String>;
+    static private var g2d_onDebug:GCallback3<Int,PosInfos,Array<Dynamic>>;
     #if swc @:extern #end
-    static public var onDebug(get, never):GCallback1<String>;
+    static public var onDebug(get, never):GCallback3<Int,PosInfos,Array<Dynamic>>;
     #if swc @:getter(onDebug) #end
-    static private function get_onDebug():GCallback1<String> {
-        if (g2d_onDebug == null) g2d_onDebug = new GCallback1(String);
+    static private function get_onDebug():GCallback3<Int,PosInfos,Array<Dynamic>> {
+        if (g2d_onDebug == null) g2d_onDebug = new GCallback3(Int);
         return g2d_onDebug;
     }
 
@@ -96,6 +96,8 @@ class GDebug {
     }
 	
     inline static private function g2d_internal_args(p_priority:Int, p_pos:PosInfos, p_args:Array<Dynamic>):Void {
+		if (g2d_onDebug != null) g2d_onDebug.dispatch(p_priority, p_pos, p_args);
+		
         var msg:String = switch (p_priority) {
             case GDebugPriority.INTERNAL_DUMP:
                 "INTERNAL_DUMP: ";
@@ -126,6 +128,5 @@ class GDebug {
 		#elseif js
 		trace(p_msg);
 		#end
-        if (g2d_onDebug != null) g2d_onDebug.dispatch(p_msg);
     }
 }

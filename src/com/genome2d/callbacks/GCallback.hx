@@ -123,3 +123,26 @@ class GCallback2<TValue1,TValue2> extends GCallback<TValue1 -> TValue2 -> Void>
         }
     }
 }
+
+class GCallback3<TValue1,TValue2,TValue3> extends GCallback<TValue1 -> TValue2 -> TValue3 -> Void>
+{
+    public function new(?p_type1:Dynamic = null, ?p_type2:Dynamic = null, ?p_type3:Dynamic = null) {
+        super([p_type1,p_type2,p_type3]);
+    }
+
+	/**
+		Executes the callbacks listeners with two arguements.
+	**/
+    public function dispatch(p_value1:TValue1, p_value2:TValue2, p_value3:TValue3):Void {
+        g2d_iteratingDispatch = 0;		
+        while (g2d_iteratingDispatch < g2d_listenerCount) {
+            g2d_listeners[g2d_iteratingDispatch](p_value1, p_value2, p_value3);
+			g2d_iteratingDispatch++;
+        }
+
+        var onceCount:Int = g2d_listenersOnce.length;
+        for (i in 0...onceCount) {
+            g2d_listeners.shift()(p_value1, p_value2, p_value3);
+        }
+    }
+}
