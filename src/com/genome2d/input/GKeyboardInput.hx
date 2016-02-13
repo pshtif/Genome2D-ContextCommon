@@ -9,6 +9,10 @@
 package com.genome2d.input;
 
 class GKeyboardInput {
+	public var altKey:Bool = false;
+	public var ctrlKey:Bool = false;
+	public var shiftKey:Bool = false;
+	
     public var type:String;
     public var keyCode:Int;
 	public var charCode:Int;
