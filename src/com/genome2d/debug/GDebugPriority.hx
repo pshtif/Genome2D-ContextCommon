@@ -7,4 +7,5 @@ class GDebugPriority {
     inline static public var WARNING:Int = 4;
     inline static public var ERROR:Int = 5;
     inline static public var PROFILE:Int = 100;
+	inline static public var EDITOR:Int = 1000;
 }

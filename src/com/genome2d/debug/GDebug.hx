@@ -50,6 +50,10 @@ class GDebug {
         }
         #end
     }
+	
+	inline static public function editor(?p_arg1:Dynamic, ?p_arg2:Dynamic, ?p_arg3:Dynamic, ?p_arg4:Dynamic, ?p_arg5:Dynamic, ?p_arg6:Dynamic, ?p_arg7:Dynamic, ?p_arg8:Dynamic, ?p_arg9:Dynamic, ?p_arg10:Dynamic, ?p_arg11:Dynamic, ?p_arg12:Dynamic, ?p_arg13:Dynamic, ?p_arg14:Dynamic, ?p_arg15:Dynamic, ?p_arg16:Dynamic, ?p_arg17:Dynamic, ?p_arg18:Dynamic, ?p_arg19:Dynamic, ?p_arg20:Dynamic, ?pos:PosInfos):Void {
+        g2d_internal(GDebugPriority.EDITOR, pos, p_arg1, p_arg2, p_arg3, p_arg4, p_arg5, p_arg6, p_arg7, p_arg8, p_arg9, p_arg10, p_arg11, p_arg12, p_arg13, p_arg14, p_arg15, p_arg16, p_arg17, p_arg18, p_arg19, p_arg20);
+    }
 
     inline static public function warning(?p_arg1:Dynamic, ?p_arg2:Dynamic, ?p_arg3:Dynamic, ?p_arg4:Dynamic, ?p_arg5:Dynamic, ?p_arg6:Dynamic, ?p_arg7:Dynamic, ?p_arg8:Dynamic, ?p_arg9:Dynamic, ?p_arg10:Dynamic, ?p_arg11:Dynamic, ?p_arg12:Dynamic, ?p_arg13:Dynamic, ?p_arg14:Dynamic, ?p_arg15:Dynamic, ?p_arg16:Dynamic, ?p_arg17:Dynamic, ?p_arg18:Dynamic, ?p_arg19:Dynamic, ?p_arg20:Dynamic, ?pos:PosInfos):Void {
         if (showPriority <= GDebugPriority.WARNING) {
