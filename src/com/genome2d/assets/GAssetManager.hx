@@ -125,7 +125,7 @@ class GAssetManager {
         if (ignoreFailed) g2d_loadQueueNext();
     }
 
-    static public function generateTextures(p_scaleFactor:Float = 1, p_overwrite:Bool = false):Void {
+    static public function generate(p_scaleFactor:Float = 1, p_overwrite:Bool = false):Void {
         for (asset in g2d_references) {
             if (!Std.is(asset, GImageAsset) || !asset.isLoaded()) continue;
 			

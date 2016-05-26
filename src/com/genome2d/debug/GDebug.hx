@@ -68,6 +68,10 @@ class GDebug {
     inline static public function error(?p_arg1:Dynamic, ?p_arg2:Dynamic, ?p_arg3:Dynamic, ?p_arg4:Dynamic, ?p_arg5:Dynamic, ?p_arg6:Dynamic, ?p_arg7:Dynamic, ?p_arg8:Dynamic, ?p_arg9:Dynamic, ?p_arg10:Dynamic, ?p_arg11:Dynamic, ?p_arg12:Dynamic, ?p_arg13:Dynamic, ?p_arg14:Dynamic, ?p_arg15:Dynamic, ?p_arg16:Dynamic, ?p_arg17:Dynamic, ?p_arg18:Dynamic, ?p_arg19:Dynamic, ?p_arg20:Dynamic, ?pos:PosInfos):Void {
         g2d_internal(GDebugPriority.ERROR, pos, p_arg1, p_arg2, p_arg3, p_arg4, p_arg5, p_arg6, p_arg7, p_arg8, p_arg9, p_arg10, p_arg11, p_arg12, p_arg13, p_arg14, p_arg15, p_arg16, p_arg17, p_arg18, p_arg19, p_arg20);
     }
+	
+	inline static public function g2d_error(?p_arg1:Dynamic, ?p_arg2:Dynamic, ?p_arg3:Dynamic, ?p_arg4:Dynamic, ?p_arg5:Dynamic, ?p_arg6:Dynamic, ?p_arg7:Dynamic, ?p_arg8:Dynamic, ?p_arg9:Dynamic, ?p_arg10:Dynamic, ?p_arg11:Dynamic, ?p_arg12:Dynamic, ?p_arg13:Dynamic, ?p_arg14:Dynamic, ?p_arg15:Dynamic, ?p_arg16:Dynamic, ?p_arg17:Dynamic, ?p_arg18:Dynamic, ?p_arg19:Dynamic, ?p_arg20:Dynamic, ?pos:PosInfos):Void {
+        g2d_internal(GDebugPriority.G2D_ERROR, pos, p_arg1, p_arg2, p_arg3, p_arg4, p_arg5, p_arg6, p_arg7, p_arg8, p_arg9, p_arg10, p_arg11, p_arg12, p_arg13, p_arg14, p_arg15, p_arg16, p_arg17, p_arg18, p_arg19, p_arg20);
+    }
 
     inline static public function error_handler(p_arg:Dynamic):Void {
         g2d_internal(GDebugPriority.ERROR, null, p_arg);
@@ -115,6 +119,8 @@ class GDebug {
                 "WARNING: ";
             case GDebugPriority.ERROR:
                 "ERROR: ";
+			case GDebugPriority.G2D_ERROR:
+				"Genome2D ERROR: ";
             case _:
 				"";
         }
@@ -122,7 +128,7 @@ class GDebug {
         if (p_args.length>0) msg += " : " + p_args.toString();
 
         GDebug.trace(msg);
-        if (p_priority == GDebugPriority.ERROR) throw msg;
+        if (p_priority == GDebugPriority.ERROR || p_priority == GDebugPriority.G2D_ERROR) throw msg;
     }
 
     inline static public function trace(p_msg:String):Void {
