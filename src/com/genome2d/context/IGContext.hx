@@ -11,9 +11,9 @@ import com.genome2d.callbacks.GCallback;
 import com.genome2d.context.IGRenderer;
 
 #if genome_stage3donly
-typedef IGContext = com.genome2d.context.stage3d.GStage3DContext;
+typedef IGContext = com.genome2d.context.GStage3DContext;
 #elseif genome_webglonly
-typedef IGContext = com.genome2d.context.webgl.GWebGLContext;
+typedef IGContext = com.genome2d.context.GWebGLContext;
 #else
 #if swc
 import flash.utils.Object;
