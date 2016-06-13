@@ -63,6 +63,10 @@ class GAssetManager {
     static public function getXmlAssetById(p_id:String):GXmlAsset {
         return cast g2d_references.get(p_id);
     }
+	
+	static public function getTextAssetById(p_id:String):GTextAsset {
+		return cast g2d_references.get(p_id);
+	}
 
     static public function getImageAssetById(p_id:String):GImageAsset {
         return cast g2d_references.get(p_id);
@@ -74,6 +78,8 @@ class GAssetManager {
                 return new GImageAsset(p_url, p_id);
             case "xml" | "fnt":
                 return new GXmlAsset(p_url, p_id);
+			case "fbx":
+				return new GTextAsset(p_url, p_id);
         }
 
         return null;
