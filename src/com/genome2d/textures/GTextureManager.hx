@@ -103,6 +103,10 @@ class GTextureManager {
 		} else if (Std.is(p_source, ByteArray)) {
 			texture = new GTexture(g2d_context, p_id, p_source, p_format);
 			
+		// Create from uncompressed byte array			
+		} else if (Std.is(p_source, GByteArrayRectangle)) {
+			texture = new GTexture(g2d_context, p_id, p_source, p_format);
+			
 		// Create from Embedded
 		} else if (Std.is(p_source, Class)) {
 			var bitmap:Bitmap = cast Type.createInstance(p_source, []);
