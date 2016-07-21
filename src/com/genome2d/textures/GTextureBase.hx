@@ -383,7 +383,7 @@ class GTextureBase implements IGPrototypable
 	}
 	
     public function toString():String {
-        return "@"+id;
+        return "@"+g2d_id;
     }
 	
 	/*
