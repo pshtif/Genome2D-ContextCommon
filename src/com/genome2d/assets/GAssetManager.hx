@@ -61,8 +61,6 @@ class GAssetManager {
 
 	@:access(com.genome2d.assets.GStaticAssetManager)
     public function new() {
-		GStaticAssetManager.g2d_instance = this;
-		
         g2d_loadQueue = new Array<GAsset>();
         g2d_references = new Map<String,GAsset>();
 
@@ -81,6 +79,11 @@ class GAssetManager {
     public function getImageAssetById(p_id:String):GImageAsset {
         return cast g2d_references.get(p_id);
     }
+	
+	public function getTextAssetById(p_id:String):GTextAsset {
+        return cast g2d_references.get(p_id);
+    }
+
 
     public function addFromUrl(p_url:String, p_id:String = ""):GAsset {
 		var asset:GAsset = null;
@@ -89,6 +92,8 @@ class GAssetManager {
                 asset = new GImageAsset(this, p_url, p_id);
             case "xml" | "fnt":
                 asset = new GXmlAsset(this, p_url, p_id);
+			default:
+				asset = new GTextAsset(this, p_url, p_id);
         }
 
 		if (asset != null) addToQueue(asset);
@@ -105,8 +110,15 @@ class GAssetManager {
 		g2d_loadQueue.push(p_asset);
 	}
 
-    public function loadQueue():Void {
-        if (!g2d_loading) g2d_loadQueueNext();
+    public function loadQueue(p_successHandler:Void->Void, p_failedHandler:GAsset->Void = null):Bool {
+        if (!g2d_loading) {
+			if (p_successHandler != null) onQueueLoaded.addOnce(p_successHandler);
+			if (p_failedHandler != null) onQueueFailed.addOnce(p_failedHandler);
+			g2d_loadQueueNext();
+			return true;
+		}
+		
+		return false;
     }
 
     private function g2d_loadQueueNext():Void {
@@ -136,8 +148,7 @@ class GAssetManager {
         for (asset in g2d_references) {
             if (!Std.is(asset, GImageAsset) || !asset.isLoaded()) continue;
 			
-			var id:String = asset.id.substring(0, asset.id.lastIndexOf("."));
-			var texture:GTexture = GTextureManager.getTexture(id);
+			var texture:GTexture = GTextureManager.getTexture(asset.id);
             if (texture != null) {
 				if (p_overwrite) {
 					texture.dispose();
@@ -146,12 +157,13 @@ class GAssetManager {
 				}
 			}
 
-			texture = GTextureManager.createTexture(id, cast asset);
+			texture = GTextureManager.createTexture(asset.id, cast asset);
 			
-            if (getXmlAssetById(id + ".xml") != null) {
-				GTextureManager.createSubTextures(texture, getXmlAssetById(id + ".xml").xml);
-            } else if (getXmlAssetById(id + ".fnt") != null) {
-				GFontManager.createTextureFont(texture.id, texture, getXmlAssetById(id + ".fnt").xml);
+			var idWithoutExt:String = asset.id.substring(0, asset.id.lastIndexOf("."));			
+            if (getXmlAssetById(idWithoutExt + ".xml") != null) {
+				GTextureManager.createSubTextures(texture, getXmlAssetById(idWithoutExt + ".xml").xml);
+            } else if (getXmlAssetById(idWithoutExt + ".fnt") != null) {
+				GFontManager.createTextureFont(idWithoutExt+".fnt", texture, getXmlAssetById(idWithoutExt + ".fnt").xml);
             }
 			
 			texture.invalidateNativeTexture(false);
