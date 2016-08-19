@@ -138,8 +138,8 @@ class GTextureManager {
 		
 		if (p_frame != null) {
             texture.g2d_frame = p_frame;
-            texture.pivotX = (p_frame.width-p_region.width)*.5 + p_frame.x;
-            texture.pivotY = (p_frame.height-p_region.height)*.5 + p_frame.y;
+            texture.pivotX = p_frame.x;// (p_frame.width-p_region.width)*.5 + p_frame.x;
+            texture.pivotY = p_frame.y;// (p_frame.height - p_region.height) * .5 + p_frame.y;
         }
 
         return texture;
