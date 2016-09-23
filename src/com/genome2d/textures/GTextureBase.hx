@@ -231,10 +231,14 @@ class GTextureBase implements IGPrototypable
 	 * 	U scale
 	 */
 	#if swc @:extern #end
-    public var uScale(get, never):Float;
+    public var uScale(get, set):Float;
     #if swc @:getter(uScale) #end
     inline private function get_uScale():Float {
         return g2d_uScale;
+    }
+	#if swc @:setter(uScale) #end
+    inline private function set_uScale(p_value:Float):Float {
+        return g2d_uScale = p_value;
     }
 	
     private var g2d_vScale:Float;
@@ -242,10 +246,14 @@ class GTextureBase implements IGPrototypable
 	 * 	V scale
 	 */
 	#if swc @:extern #end
-    public var vScale(get, never):Float;
+    public var vScale(get, set):Float;
     #if swc @:getter(vScale) #end
     inline private function get_vScale():Float {
         return g2d_vScale;
+    }
+	#if swc @:setter(vScale) #end
+    inline private function set_vScale(p_value:Float):Float {
+        return g2d_vScale = p_value;
     }
 
     private var g2d_repeatable:Bool;
