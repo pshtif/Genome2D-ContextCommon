@@ -10,7 +10,7 @@ class GDebug {
 	
     static public var showPriority:Int = 1;
 	#if flash
-    static public var useNativeTrace:Bool = true;
+    static public var useNativeTrace:Bool = false;
 	#end
     static public var stackTrace:Bool = true;
 
@@ -138,7 +138,11 @@ class GDebug {
     inline static public function trace(p_msg:String):Void {
         g2d_console += p_msg;
 		#if flash
-        if (useNativeTrace) untyped __global__["trace"](p_msg);
+		#if swc
+		if (useNativeTrace) untyped __global__["trace"](p_msg);
+		#else
+        if (useNativeTrace) trace(p_msg);
+		#end
 		#elseif js
 		trace(p_msg);
 		#end
