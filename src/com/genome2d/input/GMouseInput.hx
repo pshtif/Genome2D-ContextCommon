@@ -8,6 +8,7 @@
  */
 package com.genome2d.input;
 
+import com.genome2d.components.GCameraController;
 import com.genome2d.context.GCamera;
 
 class GMouseInput {
@@ -15,7 +16,7 @@ class GMouseInput {
 	
 	public var dispatcher:IGInteractive;
 	public var target:IGInteractive;
-	public var camera:GCamera;
+	public var camera:GCameraController;
     public var localX:Float;
     public var localY:Float;
 	public var type:String;

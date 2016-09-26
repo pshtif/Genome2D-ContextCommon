@@ -30,6 +30,10 @@ class GMouseInputType {
                 type = MOUSE_UP;
             case "mouseWheel":
                 type = MOUSE_WHEEL;
+			case "rightMouseDown":
+                type = RIGHT_MOUSE_DOWN;
+			case "rightMouseUp":
+                type = RIGHT_MOUSE_UP;
         }
 
         return type;
