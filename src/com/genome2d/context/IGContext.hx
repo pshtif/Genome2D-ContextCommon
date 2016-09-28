@@ -10,9 +10,9 @@ package com.genome2d.context;
 import com.genome2d.callbacks.GCallback;
 import com.genome2d.context.IGRenderer;
 
-#if genome_stage3donly
+#if flash
 typedef IGContext = com.genome2d.context.GStage3DContext;
-#elseif genome_webglonly
+#elseif js
 typedef IGContext = com.genome2d.context.GWebGLContext;
 #else
 #if swc
@@ -65,7 +65,7 @@ interface IGContext {
     function getMaskRect():GRectangle;
     function setMaskRect(p_maskRect:GRectangle):Void;
 
-    function setActiveCamera(p_camera:GCamera):Void;
+    function setActiveCamera(p_camera:GCamera):Bool;
     function getActiveCamera():GCamera;
 
     function init():Void;
