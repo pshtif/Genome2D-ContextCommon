@@ -130,7 +130,7 @@ class GTextRenderer {
 
     private var g2d_width:Float = 100;
     /*
-        Width of the text
+        Width of the text renderer
      */
     #if swc @:extern #end
     @prototype public var width(get, set):Float;
@@ -150,7 +150,7 @@ class GTextRenderer {
 
     private var g2d_height:Float = 100;
     /*
-        Height of the text
+        Height of the text renderer
      */
     #if swc @:extern #end
     @prototype public var height(get, set):Float;
@@ -167,6 +167,30 @@ class GTextRenderer {
             g2d_dirty = true;
         }
         return g2d_height;
+    }
+
+    private var g2d_textWidth:Float = 0;
+    /*
+        Width of the text
+     */
+    #if swc @:extern #end
+    @prototype public var textWidth(get, null):Float;
+    #if swc @:getter(textWidth) #end
+    inline private function get_textWidth():Float {
+        if (g2d_dirty) invalidate();
+        return g2d_textWidth;
+    }
+
+    private var g2d_textHeight:Float = 0;
+    /*
+        Height of the text
+     */
+    #if swc @:extern #end
+    @prototype public var textHeight(get, null):Float;
+    #if swc @:getter(textHeight) #end
+    inline private function get_textHeight():Float {
+        if (g2d_dirty) invalidate();
+        return g2d_textHeight;
     }
 
     public function new():Void {
