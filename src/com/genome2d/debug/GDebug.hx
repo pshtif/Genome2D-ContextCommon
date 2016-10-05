@@ -6,11 +6,14 @@ import com.genome2d.debug.GDebugPriority;
 import haxe.PosInfos;
 
 class GDebug {
-    static private var g2d_console:String = "";
+    static private var g2d_log:String = "";
+    static public function getLog():String {
+        return g2d_log;
+    }
 	
     static public var showPriority:Int = 1;
 	#if flash
-    static public var useNativeTrace:Bool = false;
+    static public var useNativeTrace:Bool = true;
 	#end
     static public var stackTrace:Bool = true;
 
@@ -81,6 +84,11 @@ class GDebug {
         g2d_internal(GDebugPriority.ERROR, null, p_arg);
     }
 
+    @:allow(com.genome2d.Genome2D)
+    static private function traceRedirect(p_arg : Dynamic, ?p_pos : haxe.PosInfos):Void {
+        g2d_internal(GDebugPriority.TRACE, p_pos, p_arg);
+    }
+
 	inline static private function g2d_internal(p_priority:Int, p_pos:PosInfos, ?p_arg1:Dynamic, ?p_arg2:Dynamic, ?p_arg3:Dynamic, ?p_arg4:Dynamic, ?p_arg5:Dynamic, ?p_arg6:Dynamic, ?p_arg7:Dynamic, ?p_arg8:Dynamic, ?p_arg9:Dynamic, ?p_arg10:Dynamic, ?p_arg11:Dynamic, ?p_arg12:Dynamic, ?p_arg13:Dynamic, ?p_arg14:Dynamic, ?p_arg15:Dynamic, ?p_arg16:Dynamic, ?p_arg17:Dynamic, ?p_arg18:Dynamic, ?p_arg19:Dynamic, ?p_arg20:Dynamic):Void {
         var args:Array<Dynamic> = new Array<Dynamic>();
         if (p_arg1 != null) args.push(p_arg1);
@@ -130,21 +138,15 @@ class GDebug {
         }
         if (p_pos != null) msg += p_pos.fileName+":"+p_pos.lineNumber+" : "+p_pos.methodName;
         if (p_args.length > 0) msg += " : " + p_args.toString();
-		
+
         GDebug.trace(msg);
         if (p_priority == GDebugPriority.ERROR || p_priority == GDebugPriority.G2D_ERROR) throw msg;
     }
 
     inline static public function trace(p_msg:String):Void {
-        g2d_console += p_msg;
+        g2d_log += p_msg;
 		#if flash
-		#if swc
 		if (useNativeTrace) untyped __global__["trace"](p_msg);
-		#else
-        if (useNativeTrace) trace(p_msg);
-		#end
-		#elseif js
-		trace(p_msg);
-		#end
+        #end
     }
 }

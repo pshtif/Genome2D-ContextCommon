@@ -1,5 +1,6 @@
 package com.genome2d.debug;
 class GDebugPriority {
+    inline static public var TRACE:Int = -1;
     inline static public var INTERNAL_DUMP:Int = 0;
     inline static public var AUTO_DUMP:Int = 1;
     inline static public var DUMP:Int = 2;
