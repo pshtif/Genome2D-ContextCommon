@@ -86,7 +86,9 @@ class GDebug {
 
     @:allow(com.genome2d.Genome2D)
     static private function traceRedirect(p_arg : Dynamic, ?p_pos : haxe.PosInfos):Void {
-        g2d_internal(GDebugPriority.TRACE, p_pos, p_arg);
+        var args:Array<Dynamic> = [p_arg];
+        if (p_pos.customParams != null) args = args.concat(p_pos.customParams);
+        g2d_internal(GDebugPriority.TRACE, p_pos, args);
     }
 
 	inline static private function g2d_internal(p_priority:Int, p_pos:PosInfos, ?p_arg1:Dynamic, ?p_arg2:Dynamic, ?p_arg3:Dynamic, ?p_arg4:Dynamic, ?p_arg5:Dynamic, ?p_arg6:Dynamic, ?p_arg7:Dynamic, ?p_arg8:Dynamic, ?p_arg9:Dynamic, ?p_arg10:Dynamic, ?p_arg11:Dynamic, ?p_arg12:Dynamic, ?p_arg13:Dynamic, ?p_arg14:Dynamic, ?p_arg15:Dynamic, ?p_arg16:Dynamic, ?p_arg17:Dynamic, ?p_arg18:Dynamic, ?p_arg19:Dynamic, ?p_arg20:Dynamic):Void {
