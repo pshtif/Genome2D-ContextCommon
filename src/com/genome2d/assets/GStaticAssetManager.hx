@@ -42,9 +42,9 @@ class GStaticAssetManager
 		g2d_instance.loadQueue(p_successHandler, p_failedHandler);
 	}
 	
-	static public function generate():Void {
+	static public function generate(p_scaleFactor:Float = 1, p_overwrite:Bool = false):Void {
 		if (g2d_instance == null) MGDebug.G2D_ERROR("No asset manager initialized.");
-		g2d_instance.generate();
+		g2d_instance.generate(p_scaleFactor, p_overwrite);
 	}
 	
 	static public function disposeAssets():Void {

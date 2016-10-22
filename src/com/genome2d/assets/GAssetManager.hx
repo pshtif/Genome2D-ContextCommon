@@ -9,24 +9,30 @@
 package com.genome2d.assets;
 
 import com.genome2d.callbacks.GCallback;
-import com.genome2d.macros.MGDebug;
 import com.genome2d.text.GFontManager;
 import com.genome2d.text.GTextureFont;
 import com.genome2d.textures.GTexture;
-import com.genome2d.textures.GTextureBase;
 import com.genome2d.textures.GTextureManager;
 
 class GAssetManager {
     static public var PATH_REGEX:EReg = ~/([^\?\/\\]+?)(?:\.([\w\-]+))?(?:\?.*)?$/;
 	
-	inline static private function getFileName(p_path:String):String {
+	inline static public function getFileName(p_path:String):String {
         PATH_REGEX.match(p_path);
         return PATH_REGEX.matched(1);
     }
 
-    inline static private function getFileExtension(p_path:String):String {
+    inline static public function getFileExtension(p_path:String):String {
         PATH_REGEX.match(p_path);
         return PATH_REGEX.matched(2);
+    }
+
+    inline static public function getPathWithoutExtension(p_path:String):String {
+        return p_path.substring(0, p_path.lastIndexOf("."));
+    }
+
+    inline static public function convertUrlToId(p_url:String):String {
+        return URL_TO_ID_REGEX.replace(p_url, "/");
     }
 	
     public var ignoreFailed:Bool = false;
@@ -158,8 +164,8 @@ class GAssetManager {
 			}
 
 			texture = GTextureManager.createTexture(asset.id, cast asset);
-			
-			var idWithoutExt:String = asset.id.substring(0, asset.id.lastIndexOf("."));			
+
+            var idWithoutExt:String = asset.id.substring(0, asset.id.lastIndexOf("."));
             if (getXmlAssetById(idWithoutExt + ".xml") != null) {
 				GTextureManager.createSubTextures(texture, getXmlAssetById(idWithoutExt + ".xml").xml);
             } else if (getXmlAssetById(idWithoutExt + ".fnt") != null) {
@@ -169,4 +175,7 @@ class GAssetManager {
 			texture.invalidateNativeTexture(false);
         }
     }
+
+    // Moved this here because Intellij cannot handle the syntax and will go crazy on the code under it
+    static public var URL_TO_ID_REGEX:EReg = ~/\\/g;
 }

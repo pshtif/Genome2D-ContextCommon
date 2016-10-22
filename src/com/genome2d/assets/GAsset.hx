@@ -8,6 +8,7 @@
  */
 package com.genome2d.assets;
 
+import com.genome2d.assets.GAssetManager;
 import com.genome2d.callbacks.GCallback.GCallback1;
 import com.genome2d.debug.GDebug;
 
@@ -51,7 +52,7 @@ class GAsset
     inline private function set_url(p_value:String):String {
         if (!isLoaded()) {
             g2d_url = p_value;
-            if (g2d_id == "") id = g2d_url.substr(g2d_url.lastIndexOf("\\") + 1);
+            if (g2d_id == "") id = GAssetManager.convertUrlToId(g2d_url);
         } else {
             GDebug.warning("Asset already loaded " + id);
         }
