@@ -30,10 +30,13 @@ class GTextureSettings implements IGPrototypable {
     }
     #if swc @:setter(repeatable) #end
     inline public function set_repeatable(p_value:Bool):Bool {
-        return g2d_texture.repeatable = p_value;
+        g2d_texture.repeatable = p_value;
+        g2d_texture.invalidateNativeTexture(true);
+        return p_value;
     }
 
     #if swc @:extern #end
+    @tick(.1)
     @prototype
     public var u(get, set):Float;
     #if swc @:getter(u) #end
@@ -46,6 +49,7 @@ class GTextureSettings implements IGPrototypable {
     }
 
     #if swc @:extern #end
+    @tick(.1)
     @prototype
     public var v(get, set):Float;
     #if swc @:getter(v) #end
@@ -58,6 +62,7 @@ class GTextureSettings implements IGPrototypable {
     }
 
     #if swc @:extern #end
+    @tick(.1)
     @prototype
     public var uScale(get, set):Float;
     #if swc @:getter(uScale) #end
@@ -70,6 +75,7 @@ class GTextureSettings implements IGPrototypable {
     }
 
     #if swc @:extern #end
+    @tick(.1)
     @prototype
     public var vScale(get, set):Float;
     #if swc @:getter(vScale) #end
