@@ -24,7 +24,7 @@ class GTextureBase implements IGPrototypable
 	private var g2d_context:IGContext;
 	
 	private var g2d_onInvalidated:GCallback1<GTexture>;
-	
+
 	public var rotate:Bool = false;
 	
 	/**
@@ -161,29 +161,29 @@ class GTextureBase implements IGPrototypable
         return g2d_scaleFactor;
     }
 
-    private var g2d_filteringType:Int;
+    private var g2d_filteringType:GTextureFilteringType;
 	/**
 	 * 	Filtering type
 	 */
     #if swc @:extern #end
-    public var filteringType(get,set):Int;
+    public var filteringType(get,set):GTextureFilteringType;
     #if swc @:getter(filteringType) #end
-    inline private function get_filteringType():Int {
+    inline private function get_filteringType():GTextureFilteringType {
         return g2d_filteringType;
     }
     #if swc @:setter(filteringType) #end
-    inline private function set_filteringType(p_value:Int):Int {
+    inline private function set_filteringType(p_value:GTextureFilteringType):GTextureFilteringType {
         return g2d_filteringType = p_value;
     }
 
-    private var g2d_sourceType:Int;
+    private var g2d_sourceType:GTextureSourceType;
 	/**
 	 * 	Source type
 	 */
     #if swc @:extern #end
-    public var sourceType(get,never):Int;
+    public var sourceType(get,never):GTextureSourceType;
     #if swc @:getter(sourceType) #end
-    public function get_sourceType():Int {
+    public function get_sourceType():GTextureSourceType {
         return g2d_sourceType;
     }
 	
@@ -209,10 +209,14 @@ class GTextureBase implements IGPrototypable
 	 * 	U
 	 */
 	#if swc @:extern #end
-    public var u(get, never):Float;
+    public var u(get, set):Float;
     #if swc @:getter(u) #end
     inline private function get_u():Float {
         return g2d_u;
+    }
+    #if swc @:setter(u) #end
+    inline private function set_u(p_value:Float):Float {
+        return g2d_u = p_value;
     }
 	
     private var g2d_v:Float;
@@ -220,10 +224,14 @@ class GTextureBase implements IGPrototypable
 	 * 	V
 	 */
 	#if swc @:extern #end
-    public var v(get, never):Float;
+    public var v(get, set):Float;
     #if swc @:getter(v) #end
     inline private function get_v():Float {
         return g2d_v;
+    }
+    #if swc @:setter(v) #end
+    inline private function set_v(p_value:Float):Float {
+        return g2d_v = p_value;
     }
 	
     private var g2d_uScale:Float;

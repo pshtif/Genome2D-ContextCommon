@@ -8,8 +8,8 @@
  */
 package com.genome2d.assets;
 
-class GImageAssetType {
-    inline static public var BITMAPDATA:Int = 0;
-    inline static public var ATF:Int = 1;
-	inline static public var IMAGEELEMENT:Int = 2;
+enum GImageAssetType {
+    BITMAPDATA;
+    ATF;
+	IMAGEELEMENT;
 }

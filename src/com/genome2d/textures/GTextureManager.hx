@@ -25,7 +25,7 @@ class GTextureManager {
         g2d_textures = new Map<String,GTexture>();
     }
 
-    static public var defaultFilteringType:Int = GTextureFilteringType.LINEAR;
+    static public var defaultFilteringType:GTextureFilteringType = GTextureFilteringType.LINEAR;
 
     static private var g2d_textures:Map<String,GTexture>;
     static public function getAllTextures():Map<String,GTexture> {
@@ -94,6 +94,7 @@ class GTextureManager {
 				case GImageAssetType.IMAGEELEMENT:
 					texture = new GTexture(g2d_context, p_id, imageAsset.imageElement, p_format);
 				#end
+                case _:
 			}
 		#if flash
 		// Create from bitmap data

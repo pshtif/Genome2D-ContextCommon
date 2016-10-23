@@ -1,4 +1,6 @@
 package com.genome2d.text;
+import com.genome2d.utils.GHAlignType;
+import com.genome2d.utils.GVAlignType;
 import com.genome2d.Genome2D;
 import com.genome2d.context.IGContext;
 class GTextRenderer {
@@ -64,29 +66,29 @@ class GTextRenderer {
         return g2d_lineSpace;
     }
 
-    private var g2d_vAlign:Int = 0;
+    private var g2d_vAlign:GVAlignType;
     #if swc @:extern #end
-    @prototype public var vAlign(get,set):Int;
+    @prototype public var vAlign(get,set):GVAlignType;
     #if swc @:getter(vAlign) #end
-    inline private function get_vAlign():Int {
+    inline private function get_vAlign():GVAlignType {
         return g2d_vAlign;
     }
     #if swc @:setter(vAlign) #end
-    inline private function set_vAlign(p_value:Int):Int {
+    inline private function set_vAlign(p_value:GVAlignType):GVAlignType {
         g2d_vAlign = p_value;
         g2d_dirty = true;
         return g2d_vAlign;
     }
 
-    private var g2d_hAlign:Int = 0;
+    private var g2d_hAlign:GHAlignType;
     #if swc @:extern #end
-    @prototype public var hAlign(get,set):Int;
+    @prototype public var hAlign(get,set):GHAlignType;
     #if swc @:getter(hAlign) #end
-    inline private function get_hAlign():Int {
+    inline private function get_hAlign():GHAlignType {
         return g2d_hAlign;
     }
     #if swc @:setter(hAlign) #end
-    inline private function set_hAlign(p_value:Int):Int {
+    inline private function set_hAlign(p_value:GHAlignType):GHAlignType {
         g2d_hAlign = p_value;
         g2d_dirty = true;
         return g2d_hAlign;
@@ -194,6 +196,8 @@ class GTextRenderer {
     }
 
     public function new():Void {
+        g2d_vAlign = GVAlignType.TOP;
+        g2d_hAlign = GHAlignType.LEFT;
         g2d_context = Genome2D.getInstance().getContext();
     }
 

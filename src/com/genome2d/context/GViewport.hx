@@ -7,27 +7,27 @@ import com.genome2d.utils.GHAlignType;
 import com.genome2d.utils.GVAlignType;
 class GViewport {
 
-    private var g2d_vAlign:Int = GVAlignType.MIDDLE;
+    private var g2d_vAlign:GVAlignType;
     #if swc @:extern #end
-    public var vAlign(get, set):Int;
+    public var vAlign(get, set):GVAlignType;
     #if swc @:getter(vAlign) #end
-    inline private function get_vAlign():Int {
+    inline private function get_vAlign():GVAlignType {
         return g2d_vAlign;
     }
     #if swc @:setter(vAlign) #end
-    inline private function set_vAlign(p_value:Int):Int {
+    inline private function set_vAlign(p_value:GVAlignType):GVAlignType {
         return g2d_vAlign = p_value;
     }
 
-    private var g2d_hAlign:Int = GHAlignType.CENTER;
+    private var g2d_hAlign:GHAlignType;
     #if swc @:extern #end
-    public var hAlign(get, set):Int;
+    public var hAlign(get, set):GHAlignType;
     #if swc @:getter(hAlign) #end
-    inline private function get_hAlign():Int {
+    inline private function get_hAlign():GHAlignType {
         return g2d_hAlign;
     }
     #if swc @:setter(hAlign) #end
-    inline private function set_hAlign(p_value:Int):Int {
+    inline private function set_hAlign(p_value:GHAlignType):GHAlignType {
         return g2d_hAlign = p_value;
     }
 
@@ -47,6 +47,8 @@ class GViewport {
     private var g2d_cameraController:GCameraController;
 
     public function new(p_cameraController:GCameraController, p_viewWidth:Int, p_viewHeight:Int, p_autoResize:Bool = true) {
+        g2d_vAlign = GVAlignType.MIDDLE;
+        g2d_hAlign = GHAlignType.CENTER;
         g2d_cameraController = p_cameraController;
 
         viewLeft = 0;

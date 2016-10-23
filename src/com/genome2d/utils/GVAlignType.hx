@@ -11,11 +11,9 @@ package com.genome2d.utils;
 /**
     Vertical alignment types
 **/
-class GVAlignType
+enum GVAlignType
 {
-	static public inline var TOP:Int = 0;
-
-	static public inline var MIDDLE:Int = 1;
-
-	static public inline var BOTTOM:Int = 2;
+	TOP;
+	MIDDLE;
+	BOTTOM;
 }

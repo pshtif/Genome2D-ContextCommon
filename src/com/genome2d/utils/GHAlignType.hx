@@ -11,11 +11,9 @@ package com.genome2d.utils;
 /**
     Horizontal alignment types
 **/
-class GHAlignType
+enum GHAlignType
 {
-	static public inline var LEFT:Int = 0;
-
-	static public inline var CENTER:Int = 1;
-
-	static public inline var RIGHT:Int = 2;
+	LEFT;
+	CENTER;
+	RIGHT;
 }
