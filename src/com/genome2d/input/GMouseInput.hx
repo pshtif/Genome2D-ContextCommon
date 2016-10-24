@@ -31,6 +31,7 @@ class GMouseInput {
     public var shiftKey:Bool = false;
     public var nativeCaptured:Bool = false;
     public var delta:Int = 0;
+	public var time:Float = 0;
 
     public function new(p_target:IGInteractive, p_dispatcher:IGInteractive, p_type:String, p_localX:Float, p_localY:Float) {
 		dispatcher = p_dispatcher;
