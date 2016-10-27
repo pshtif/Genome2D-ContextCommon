@@ -12,6 +12,8 @@ import com.genome2d.components.GCameraController;
 import com.genome2d.context.GCamera;
 
 class GMouseInput {
+	static public var DOUBLE_CLICK_TIME:Int = 250;
+
 	public var g2d_captured:Bool = false;
 	
 	public var dispatcher:IGInteractive;
