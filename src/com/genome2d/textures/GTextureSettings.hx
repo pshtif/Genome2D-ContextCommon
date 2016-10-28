@@ -75,6 +75,7 @@ class GTextureSettings implements IGPrototypable {
     }
 
     #if swc @:extern #end
+    @editable(false)
     @tick(.1)
     @prototype
     public var vScale(get, set):Float;
