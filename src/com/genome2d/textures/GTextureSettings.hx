@@ -36,7 +36,7 @@ class GTextureSettings implements IGPrototypable {
     }
 
     #if swc @:extern #end
-    @tick(.1)
+    @range(0,1,.1)
     @prototype
     public var u(get, set):Float;
     #if swc @:getter(u) #end
@@ -49,7 +49,7 @@ class GTextureSettings implements IGPrototypable {
     }
 
     #if swc @:extern #end
-    @tick(.1)
+    @range(0,1,.1)
     @prototype
     public var v(get, set):Float;
     #if swc @:getter(v) #end
@@ -62,7 +62,7 @@ class GTextureSettings implements IGPrototypable {
     }
 
     #if swc @:extern #end
-    @tick(.1)
+    @range(0,10,1)
     @prototype
     public var uScale(get, set):Float;
     #if swc @:getter(uScale) #end
@@ -75,8 +75,7 @@ class GTextureSettings implements IGPrototypable {
     }
 
     #if swc @:extern #end
-    @editable(false)
-    @tick(.1)
+    @range(0,10,1)
     @prototype
     public var vScale(get, set):Float;
     #if swc @:getter(vScale) #end
