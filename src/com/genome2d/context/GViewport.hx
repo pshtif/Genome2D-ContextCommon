@@ -31,18 +31,56 @@ class GViewport {
         return g2d_hAlign = p_value;
     }
 
-    public var viewLeft:Float;
-    public var viewTop:Float;
-    public var viewRight:Float;
-    public var viewBottom:Float;
+    private var g2d_width:Float;
+    private var g2d_height:Float;
 
-    public var screenLeft:Float;
-    public var screenTop:Float;
-    public var screenRight:Float;
-    public var screenBottom:Float;
+    private var g2d_screenLeft:Float;
+    #if swc @:extern #end
+    public var screenLeft(get, null):Float;
+        #if swc @:getter(screenLeft) #end
+    inline private function get_screenLeft():Float {
+        return g2d_screenLeft;
+    }
 
-    public var zoom:Float;
-    public var aspectRatio:Float;
+    private var g2d_screenTop:Float;
+    #if swc @:extern #end
+    public var screenTop(get, null):Float;
+        #if swc @:getter(screenTop) #end
+    inline private function get_screenTop():Float {
+        return g2d_screenTop;
+    }
+
+    private var g2d_screenRight:Float;
+    #if swc @:extern #end
+    public var screenRight(get, null):Float;
+        #if swc @:getter(screenRight) #end
+    inline private function get_screenRight():Float {
+        return g2d_screenRight;
+    }
+
+    private var g2d_screenBottom:Float;
+    #if swc @:extern #end
+    public var screenBottom(get, null):Float;
+        #if swc @:getter(screenBottom) #end
+    inline private function get_screenBottom():Float {
+        return g2d_screenBottom;
+    }
+
+    private var g2d_zoom:Float;
+    #if swc @:extern #end
+    public var zoom(get, null):Float;
+        #if swc @:getter(zoom) #end
+    inline private function get_zoom():Float {
+        return g2d_zoom;
+    }
+
+    private var g2d_aspectRatio:Float;
+    #if swc @:extern #end
+    public var aspectRatio(get, null):Float;
+        #if swc @:getter(aspectRatio) #end
+    inline private function get_aspectRatio():Float {
+        return g2d_aspectRatio;
+    }
 
     private var g2d_cameraController:GCameraController;
 
@@ -51,10 +89,8 @@ class GViewport {
         g2d_hAlign = GHAlignType.CENTER;
         g2d_cameraController = p_cameraController;
 
-        viewLeft = 0;
-        viewTop = 0;
-        viewRight = p_viewWidth;
-        viewBottom = p_viewHeight;
+        g2d_width = p_viewWidth;
+        g2d_height = p_viewHeight;
 
         var rect:GRectangle = Genome2D.getInstance().getContext().getStageViewRect();
         resize_handler(rect.width, rect.height);
@@ -73,47 +109,47 @@ class GViewport {
     private function resize_handler(p_width:Float, p_height:Float):Void {
 		p_width *= g2d_cameraController.contextCamera.normalizedViewWidth;
 		p_height *= g2d_cameraController.contextCamera.normalizedViewHeight;
-        var aw:Float = p_width/viewRight;
-        var ah:Float = p_height/viewBottom;
+        var aw:Float = p_width/g2d_width;
+        var ah:Float = p_height/g2d_height;
 
-        aspectRatio = p_width/p_height;
-        zoom = Math.min(aw, ah);
-        g2d_cameraController.zoom = zoom;
+        g2d_aspectRatio = p_width/p_height;
+        g2d_zoom = Math.min(aw, ah);
+        g2d_cameraController.zoom = g2d_zoom;
 
         if (aw<ah) {
-            screenLeft = 0;
-            screenRight = viewRight;
+            g2d_screenLeft = 0;
+            g2d_screenRight = g2d_width;
             switch (vAlign) {
                 case GVAlignType.MIDDLE:
-                    screenTop = (viewBottom*zoom-p_height)/(2*zoom);
-                    screenBottom = viewBottom+(p_height-zoom*viewBottom)/(2*zoom);
-                    g2d_cameraController.node.setPosition(viewRight*.5, viewBottom*.5);
+                    g2d_screenTop = (g2d_height*g2d_zoom-p_height)/(2*g2d_zoom);
+                    g2d_screenBottom = g2d_height+(p_height-g2d_zoom*g2d_height)/(2*g2d_zoom);
+                    g2d_cameraController.node.setPosition(g2d_width*.5, g2d_height*.5);
                 case GVAlignType.TOP:
-                    screenTop = 0;
-                    screenBottom = viewBottom+(p_height-zoom*viewBottom)/zoom;
-                    g2d_cameraController.node.setPosition(viewRight*.5, viewBottom*.5 + (p_height-zoom*viewBottom)/(2*zoom));
+                    g2d_screenTop = 0;
+                    g2d_screenBottom = g2d_height+(p_height-g2d_zoom*g2d_height)/g2d_zoom;
+                    g2d_cameraController.node.setPosition(g2d_width*.5, g2d_height*.5 + (p_height-g2d_zoom*g2d_height)/(2*g2d_zoom));
                 case GVAlignType.BOTTOM:
-                    screenTop = (viewBottom*zoom-p_height)/zoom;
-                    screenBottom = p_height;
-                    g2d_cameraController.node.setPosition(viewRight*.5, viewBottom*.5 - (p_height-zoom*viewBottom)/(2*zoom));
+                    g2d_screenTop = (g2d_height*g2d_zoom-p_height)/g2d_zoom;
+                    g2d_screenBottom = p_height;
+                    g2d_cameraController.node.setPosition(g2d_width*.5, g2d_height*.5 - (p_height-g2d_zoom*g2d_height)/(2*g2d_zoom));
             }
         } else {
             switch (hAlign) {
                 case GHAlignType.CENTER:
-                    screenLeft = (zoom*viewRight-p_width)/(2*zoom);
-                    screenRight = viewRight+(p_width-zoom*viewRight)/(2*zoom);
-                    g2d_cameraController.node.setPosition(viewRight*.5, viewBottom*.5);
+                    g2d_screenLeft = (g2d_zoom*g2d_width-p_width)/(2*g2d_zoom);
+                    g2d_screenRight = g2d_width+(p_width-g2d_zoom*g2d_width)/(2*g2d_zoom);
+                    g2d_cameraController.node.setPosition(g2d_width*.5, g2d_height*.5);
                 case GHAlignType.LEFT:
-                    screenLeft = 0;
-                    screenRight = viewRight+(p_width-zoom*viewRight)/zoom;
-                    g2d_cameraController.node.setPosition(viewRight*.5 + (p_width-zoom*viewRight)/(2*zoom), viewBottom*.5);
+                    g2d_screenLeft = 0;
+                    g2d_screenRight = g2d_width+(p_width-g2d_zoom*g2d_width)/g2d_zoom;
+                    g2d_cameraController.node.setPosition(g2d_width*.5 + (p_width-g2d_zoom*g2d_width)/(2*g2d_zoom), g2d_height*.5);
                 case GHAlignType.RIGHT:
-                    screenLeft = (zoom*viewRight-p_width)/zoom;
-                    screenRight = p_width;
-                    g2d_cameraController.node.setPosition(viewRight*.5 - (p_width-zoom*viewRight)/(2*zoom), viewBottom*.5);
+                    g2d_screenLeft = (g2d_zoom*g2d_width-p_width)/g2d_zoom;
+                    g2d_screenRight = p_width;
+                    g2d_cameraController.node.setPosition(g2d_width*.5 - (p_width-g2d_zoom*g2d_width)/(2*g2d_zoom), g2d_height*.5);
             }
-            screenTop = 0;
-            screenBottom = viewBottom;
+            g2d_screenTop = 0;
+            g2d_screenBottom = g2d_height;
         }
     }
 }
