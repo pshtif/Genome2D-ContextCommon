@@ -19,9 +19,9 @@ class GCamera {
     public var y:Float = 0;
 
     /**
-	 * 	Camera mask used against node camera group a node is rendered through this camera if camera.mask and nodecameraGroup != 0
+	 * 	Camera group used against node camera group a node is rendered through this camera if camera.group and nodecameraGroup != 0
 	 */
-    public var mask:Int = 0xFFFFFF;
+    public var group:Int = 0xFFFFFF;
 
     /**
 	 * 	Viewport x offset, this value should be always within 0 and 1 its based on context main viewport
