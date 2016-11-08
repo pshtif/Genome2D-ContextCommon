@@ -16,8 +16,8 @@ class GMouseInput {
 
 	public var g2d_captured:Bool = false;
 	
-	public var dispatcher:IGInteractive;
-	public var target:IGInteractive;
+	public var dispatcher:IGFocusable;
+	public var target:IGFocusable;
 	public var camera:GCameraController;
     public var localX:Float;
     public var localY:Float;
@@ -35,7 +35,7 @@ class GMouseInput {
     public var delta:Int = 0;
 	public var time:Float = 0;
 
-    public function new(p_target:IGInteractive, p_dispatcher:IGInteractive, p_type:String, p_localX:Float, p_localY:Float) {
+    public function new(p_target:IGFocusable, p_dispatcher:IGFocusable, p_type:String, p_localX:Float, p_localY:Float) {
 		dispatcher = p_dispatcher;
 		target = p_target;
         type = p_type;
@@ -43,7 +43,7 @@ class GMouseInput {
         localY = p_localY;
     }
 	
-	public function clone(p_target:IGInteractive, p_dispatcher:IGInteractive, p_type:String):GMouseInput {
+	public function clone(p_target:IGFocusable, p_dispatcher:IGFocusable, p_type:String):GMouseInput {
 		var input:GMouseInput = new GMouseInput(p_target, p_dispatcher, p_type, localX, localY);
 		input.contextX = contextX;
 		input.contextY = contextY;

@@ -1,10 +1,6 @@
 package com.genome2d.input;
 
-/**
- * @author Peter @sHTiF Stefcek
- */
-
-interface IGInteractive
+interface IGFocusable
 {
     private function gotFocus():Void;
 
