@@ -14,7 +14,7 @@ import com.genome2d.context.GCamera;
 class GMouseInput {
 	static public var DOUBLE_CLICK_TIME:Int = 250;
 
-	public var g2d_captured:Bool = false;
+	public var captured:Bool = false;
 	
 	public var dispatcher:IGFocusable;
 	public var target:IGFocusable;
@@ -56,7 +56,7 @@ class GMouseInput {
 		input.nativeCaptured = nativeCaptured;
 		input.delta = delta;
 		input.camera = camera;
-		input.g2d_captured = g2d_captured;
+		input.captured = captured;
 		
 		return input;
 	}
