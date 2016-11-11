@@ -135,6 +135,8 @@ class GDebug {
                 "ERROR: ";
 			case GDebugPriority.G2D_ERROR:
 				"Genome2D ERROR: ";
+            case GDebugPriority.EDITOR:
+                "Genome2D EDITOR:";
             case _:
 				"";
         }
