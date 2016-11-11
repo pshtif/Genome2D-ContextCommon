@@ -60,7 +60,7 @@ class GTextureBase implements IGPrototypable
 	 * 	Id
 	 */
     #if swc @:extern #end
-    public var id(get,never):String;
+    public var id(get,set):String;
     #if swc @:getter(id) #end
     inline private function get_id():String {
         return g2d_id;
