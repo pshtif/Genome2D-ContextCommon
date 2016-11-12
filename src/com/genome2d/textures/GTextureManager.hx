@@ -23,6 +23,7 @@ class GTextureManager {
     static public function init(p_context:IGContext):Void {
 		g2d_context = p_context;
         g2d_textures = new Map<String,GTexture>();
+        g2d_textureAtlases = new Map<String,GTextureAtlas>();
     }
 
     static public var defaultFilteringType:GTextureFilteringType = GTextureFilteringType.LINEAR;
@@ -65,6 +66,25 @@ class GTextureManager {
         }
 
         return found;
+    }
+
+    static private var g2d_textureAtlases:Map<String,GTextureAtlas>;
+    static public function getAllTextureAtlases():Map<String,GTextureAtlas> {
+        return g2d_textureAtlases;
+    }
+
+    static private function g2d_addTextureAtlas(p_textureAtlas:GTextureAtlas):Void {
+        if (p_textureAtlas.id == null || p_textureAtlas.id.length == 0) GDebug.error("Invalid texture atlas id");
+        if (g2d_textureAtlases.exists(p_textureAtlas.id)) GDebug.error("Duplicate textures id: "+p_textureAtlas.id);
+        g2d_textureAtlases.set(p_textureAtlas.id, p_textureAtlas);
+    }
+
+    static private function g2d_removeTextureAtlas(p_textureAtlas:GTextureAtlas):Void {
+        g2d_textureAtlases.remove(p_textureAtlas.id);
+    }
+
+    static public function getTextureAtlas(p_id:String):GTextureAtlas {
+        return g2d_textureAtlases.get(p_id);
     }
 
     static public function disposeAll(p_disposeSource:Bool = false):Void {
@@ -172,4 +192,13 @@ class GTextureManager {
 
         return textures;
 	}
+
+    static public function createTextureAtlas(p_texture:GTexture, p_xml:Xml, p_prefixParentId:Bool = true):GTextureAtlas {
+        var textureAtlas:GTextureAtlas = new GTextureAtlas();
+        textureAtlas.id = p_texture.id;
+
+        textureAtlas.addSubTexturesFromXml(p_xml, p_prefixParentId);
+
+        return textureAtlas;
+    }
 }
