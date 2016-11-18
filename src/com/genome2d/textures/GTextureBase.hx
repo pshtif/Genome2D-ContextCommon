@@ -317,8 +317,12 @@ class GTextureBase implements IGPrototypable
     }	
 
     public var premultiplied:Bool;
-	
+
+    public var renderTargetAlpha:Float = 0;
     private var g2d_initializedRenderTarget:Bool;
+    inline public function isRenderTargetInitialized():Bool {
+        return g2d_initializedRenderTarget;
+    }
 
     private var g2d_contextId:Int;
 
@@ -369,6 +373,7 @@ class GTextureBase implements IGPrototypable
             g2d_initializedRenderTarget = true;
             return true;
         }
+
         return false;
     }
 
