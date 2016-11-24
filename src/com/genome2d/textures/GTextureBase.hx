@@ -180,10 +180,7 @@ class GTextureBase implements IGPrototypable
 	/**
 	 * 	Source type
 	 */
-    #if swc @:extern #end
-    public var sourceType(get,never):GTextureSourceType;
-    #if swc @:getter(sourceType) #end
-    public function get_sourceType():GTextureSourceType {
+    public function getSourceType():GTextureSourceType {
         return g2d_sourceType;
     }
 	
