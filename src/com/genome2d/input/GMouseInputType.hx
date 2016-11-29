@@ -11,6 +11,7 @@ package com.genome2d.input;
 class GMouseInputType {
     inline static public var MOUSE_DOWN:String = "mouseDown";
     inline static public var MOUSE_MOVE:String = "mouseMove";
+    inline static public var MOUSE_STILL:String = "mouseStill";
     inline static public var MOUSE_UP:String = "mouseUp";
     inline static public var MOUSE_OVER:String = "mouseOver";
     inline static public var MOUSE_OUT:String = "mouseOut";
