@@ -19,6 +19,7 @@ class GMouseInputType {
     inline static public var RIGHT_MOUSE_UP:String = "rightMouseUp";
     inline static public var MOUSE_WHEEL:String = "mouseWheel";
     inline static public var CLICK:String = "click";
+    inline static public var RIGHT_CLICK:String = "rightClick";
 
 	#if flash
     inline static public function fromNative(p_nativeType:String):String {
@@ -38,6 +39,8 @@ class GMouseInputType {
                 type = RIGHT_MOUSE_DOWN;
 			case "rightMouseUp":
                 type = RIGHT_MOUSE_UP;
+            case "rightClick":
+                type = RIGHT_CLICK;
         }
 
         return type;
