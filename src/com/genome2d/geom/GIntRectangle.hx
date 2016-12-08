@@ -99,6 +99,6 @@ class GIntRectangle implements IGPrototypable {
     }
 
     public function contains (p_x:Int, p_y:Int):Bool {
-        return p_x >= x && p_y >= y && p_x < right && p_y < bottom;
+        return p_x >= x && p_y >= y && p_x <= right && p_y <= bottom;
     }
 }
