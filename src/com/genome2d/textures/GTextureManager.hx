@@ -73,13 +73,13 @@ class GTextureManager {
         return g2d_textureAtlases;
     }
 
-    static private function g2d_addTextureAtlas(p_textureAtlas:GTextureAtlas):Void {
+    static private function addTextureAtlas(p_textureAtlas:GTextureAtlas):Void {
         if (p_textureAtlas.id == null || p_textureAtlas.id.length == 0) GDebug.error("Invalid texture atlas id");
         if (g2d_textureAtlases.exists(p_textureAtlas.id)) GDebug.error("Duplicate textures id: "+p_textureAtlas.id);
         g2d_textureAtlases.set(p_textureAtlas.id, p_textureAtlas);
     }
 
-    static private function g2d_removeTextureAtlas(p_textureAtlas:GTextureAtlas):Void {
+    static private function removeTextureAtlas(p_textureAtlas:GTextureAtlas):Void {
         g2d_textureAtlases.remove(p_textureAtlas.id);
     }
 

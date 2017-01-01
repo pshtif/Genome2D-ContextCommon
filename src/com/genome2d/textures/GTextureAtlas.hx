@@ -18,10 +18,10 @@ class GTextureAtlas implements IGPrototypable {
     }
     #if swc @:setter(id) #end
     inline private function set_id(p_value:String):String {
-        GTextureManager.g2d_removeTextureAtlas(this);
+        GTextureManager.removeTextureAtlas(this);
         g2d_id = p_value;
         if (g2d_texture == null) g2d_texture = GTextureManager.getTexture(g2d_id);
-        GTextureManager.g2d_addTextureAtlas(this);
+        GTextureManager.addTextureAtlas(this);
         return g2d_id;
     }
 
