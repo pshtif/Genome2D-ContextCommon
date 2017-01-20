@@ -26,6 +26,9 @@ class GTextureAtlas implements IGPrototypable {
     }
 
     private var g2d_texture:GTexture;
+    public function getTexture():GTexture {
+        return g2d_texture;
+    }
 
     private var g2d_subTextures:Array<GTexture>;
 
@@ -35,6 +38,24 @@ class GTextureAtlas implements IGPrototypable {
 
     public function addSubTexture(p_texture:GTexture):Void {
         g2d_subTextures.push(p_texture);
+    }
+
+    public function getSubTexture(p_id:String):GTexture {
+        for (texture in g2d_subTextures) {
+            if (texture.id == p_id) return texture;
+        }
+
+        return null;
+    }
+
+    public function findTexture(p_regExp:EReg):GTexture {
+        for (texture in g2d_subTextures) {
+            if (p_regExp.match(texture.id)) {
+                return texture;
+            }
+        }
+
+        return null;
     }
 
     public function addSubTexturesFromXml(p_xml:Xml, p_prefixParentId:Bool = true):Void {
@@ -52,5 +73,19 @@ class GTextureAtlas implements IGPrototypable {
             }
             addSubTexture(GTextureManager.createSubTexture(node.get("name"), g2d_texture, region, frame, p_prefixParentId));
         }
+    }
+
+/*
+	 *	Get a reference value
+	 */
+    public function toReference():String {
+        return "@"+g2d_id;
+    }
+
+    /*
+	 * 	Get an instance from reference
+	 */
+    static public function fromReference(p_reference:String) {
+        return GTextureManager.getTextureAtlas(p_reference.substr(1));
     }
 }
