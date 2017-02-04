@@ -140,8 +140,8 @@ class GDebug {
             case _:
 				"";
         }
-        if (p_pos != null) msg += p_pos.fileName+":"+p_pos.lineNumber+" : "+p_pos.methodName;
-        if (p_args.length > 0) msg += " : " + p_args.toString();
+        if (p_pos != null && p_priority != GDebugPriority.EDITOR) msg += p_pos.fileName+":"+p_pos.lineNumber+" : "+p_pos.methodName + " : ";
+        if (p_args.length > 0) msg += p_args.toString();
 
         GDebug.trace(msg);
         if (p_priority == GDebugPriority.ERROR || p_priority == GDebugPriority.G2D_ERROR) throw msg;
