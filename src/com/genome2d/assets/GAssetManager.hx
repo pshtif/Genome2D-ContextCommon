@@ -167,7 +167,8 @@ class GAssetManager {
 
             var idWithoutExt:String = asset.id.substring(0, asset.id.lastIndexOf("."));
             if (getXmlAssetById(idWithoutExt + ".xml") != null) {
-				GTextureManager.createSubTextures(texture, getXmlAssetById(idWithoutExt + ".xml").xml);
+                GTextureManager.createTextureAtlas(texture, getXmlAssetById(idWithoutExt + ".xml").xml, true);
+				//GTextureManager.createSubTextures(texture, getXmlAssetById(idWithoutExt + ".xml").xml);
             } else if (getXmlAssetById(idWithoutExt + ".fnt") != null) {
 				GFontManager.createTextureFont(idWithoutExt+".fnt", texture, getXmlAssetById(idWithoutExt + ".fnt").xml);
             }
