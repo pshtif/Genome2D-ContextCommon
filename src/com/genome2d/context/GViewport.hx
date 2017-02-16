@@ -1,5 +1,5 @@
 package com.genome2d.context;
-import com.genome2d.debug.GDebug;
+
 import com.genome2d.components.GCameraController;
 import com.genome2d.Genome2D;
 import com.genome2d.geom.GRectangle;

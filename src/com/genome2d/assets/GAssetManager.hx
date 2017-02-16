@@ -10,7 +10,6 @@ package com.genome2d.assets;
 
 import com.genome2d.callbacks.GCallback;
 import com.genome2d.text.GFontManager;
-import com.genome2d.text.GTextureFont;
 import com.genome2d.textures.GTexture;
 import com.genome2d.textures.GTextureManager;
 

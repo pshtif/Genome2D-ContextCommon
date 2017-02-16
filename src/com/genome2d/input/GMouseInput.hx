@@ -9,7 +9,6 @@
 package com.genome2d.input;
 
 import com.genome2d.components.GCameraController;
-import com.genome2d.context.GCamera;
 
 class GMouseInput {
 	static public var DOUBLE_CLICK_TIME:Int = 250;

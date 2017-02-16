@@ -2,7 +2,6 @@ package com.genome2d.debug;
 
 import com.genome2d.callbacks.GCallback.GCallback3;
 import com.genome2d.debug.GDebugPriority;
-import com.genome2d.debug.GDebugPriority;
 import haxe.PosInfos;
 
 class GDebug {

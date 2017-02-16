@@ -8,7 +8,6 @@
  */
 package com.genome2d.context;
 
-import com.genome2d.geom.GRectangle;
 import com.genome2d.context.GProjectionMatrix;
 
 class GCamera {

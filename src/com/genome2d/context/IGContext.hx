@@ -7,8 +7,6 @@
  *	License:: ./doc/LICENSE.md (https://github.com/pshtif/Genome2D/blob/master/LICENSE.md)
  */
 package com.genome2d.context;
-import com.genome2d.callbacks.GCallback;
-import com.genome2d.context.IGRenderer;
 
 #if flash
 typedef IGContext = com.genome2d.context.GStage3DContext;

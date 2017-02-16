@@ -5,7 +5,6 @@ import com.genome2d.context.IGContext;
 import com.genome2d.debug.GDebug;
 import com.genome2d.geom.GRectangle;
 import com.genome2d.textures.GTexture;
-import com.genome2d.textures.GTextureBase;
 
 #if flash
 import flash.display.BitmapData;
