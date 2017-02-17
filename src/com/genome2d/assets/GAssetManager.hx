@@ -152,7 +152,7 @@ class GAssetManager {
     public function generate(p_scaleFactor:Float = 1, p_overwrite:Bool = false):Void {
         for (asset in g2d_references) {
             if (!Std.is(asset, GImageAsset) || !asset.isLoaded()) continue;
-			
+
 			var texture:GTexture = GTextureManager.getTexture(asset.id);
             if (texture != null) {
 				if (p_overwrite) {
