@@ -40,7 +40,12 @@ class GIntRectangle implements IGPrototypable {
     @prototype
     public var height:Int;
 
+    #if flash
     private var g2d_native:flash.geom.Rectangle;
+    #else
+    // TODO add native types where applicable
+    private var g2d_native:Dynanic;
+    #end
 
     public function new(p_x:Int=0, p_y:Int=0, p_width:Int=0, p_height:Int=0) {
         x = p_x;
@@ -48,7 +53,11 @@ class GIntRectangle implements IGPrototypable {
         width = p_width;
         height = p_height;
 
+        #if flash
         g2d_native = new flash.geom.Rectangle(x, y, width, height);
+        #else
+        // TODO add native types where applicable
+        #end
     }
 
     public function setTo(p_x:Int, p_y:Int, p_width:Int, p_height:Int):Void {
