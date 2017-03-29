@@ -9,7 +9,9 @@ class GDebug {
     static public function getLog():String {
         return g2d_log;
     }
-	
+
+    static public var debugDrawCall:Int = 0;
+
     static public var showPriority:Int = 1;
 	#if flash
     static public var useNativeTrace:Bool = true;
