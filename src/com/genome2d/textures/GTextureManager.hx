@@ -155,6 +155,7 @@ class GTextureManager {
 		var texture:GTexture = new GTexture(g2d_context, p_prefixParentId?p_texture.id+"_"+p_id:p_id, p_texture, p_texture.g2d_format);
 		
 		texture.region = p_region;
+        texture.g2d_dirty = false;
 		
 		if (p_frame != null) {
             texture.g2d_frame = p_frame;
