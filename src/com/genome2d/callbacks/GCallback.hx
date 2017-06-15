@@ -119,7 +119,7 @@ class GCallback2<TValue1,TValue2> extends GCallback<TValue1 -> TValue2 -> Void>
 
         var onceCount:Int = g2d_listenersOnce.length;
         for (i in 0...onceCount) {
-            g2d_listeners.shift()(p_value1, p_value2);
+            g2d_listenersOnce.shift()(p_value1, p_value2);
         }
     }
 }
