@@ -24,6 +24,8 @@ class GTextureBase implements IGPrototypable
 	private var g2d_onInvalidated:GCallback1<GTexture>;
 
 	public var rotate:Bool = false;
+
+    private var g2d_inverted:Bool = false;
 	
 	/**
 	 * 	Callback after the texture was invalidated on GPU
