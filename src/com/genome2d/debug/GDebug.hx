@@ -13,9 +13,9 @@ class GDebug {
     static public var debugDrawCall:Int = 0;
 
     static public var showPriority:Int = 1;
-	#if flash
+
     static public var useNativeTrace:Bool = true;
-	#end
+
     static public var stackTrace:Bool = true;
 
     static private var g2d_onDebug:GCallback3<Int,PosInfos,Array<Dynamic>>;
@@ -152,6 +152,8 @@ class GDebug {
         g2d_log += p_msg;
 		#if flash
 		if (useNativeTrace) untyped __global__["trace"](p_msg);
+		#elseif js
+		if (useNativeTrace) untyped js.Browser.window.console.log(p_msg);
         #end
     }
 }

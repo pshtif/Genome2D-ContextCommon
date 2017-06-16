@@ -154,12 +154,12 @@ class GTextureManager {
 	static public function createSubTexture(p_id:String, p_texture:GTexture, p_region:GRectangle, p_frame:GRectangle = null, p_prefixParentId:Bool = true):GTexture {
 		var texture:GTexture = new GTexture(g2d_context, p_prefixParentId?p_texture.id+"_"+p_id:p_id, p_texture, p_texture.g2d_format);
 		
-		texture.region = p_region;
+		texture.region = (p_texture.g2d_inverted) ? new GRectangle(p_region.left, p_texture.g2d_nativeHeight - p_region.top - p_region.height, p_region.width, p_region.height) : p_region;
         texture.g2d_dirty = false;
 		
 		if (p_frame != null) {
             texture.g2d_frame = p_frame;
-			texture.pivotX = (p_frame.width-p_region.width)*.5 + p_frame.x;
+			texture.pivotX = (p_frame.width - p_region.width)*.5 + p_frame.x;
 			texture.pivotY = (p_frame.height - p_region.height) * .5 + p_frame.y;
         }
 
