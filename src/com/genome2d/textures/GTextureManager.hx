@@ -88,6 +88,10 @@ class GTextureManager {
 
     static public function disposeAll(p_disposeSource:Bool = false):Void {
         for (texture in g2d_textures) {
+            #if js
+            if (texture == null) continue;
+            #end
+            GDebug.info(texture.id);
 			if (texture.id.indexOf("g2d_") != 0) texture.dispose(p_disposeSource);
         }
     }
