@@ -96,9 +96,31 @@ class GTextureManager {
         }
     }
 
-    static public function invalidateAll(p_force:Bool):Void {
-		for (texture in g2d_textures) {
-			texture.invalidateNativeTexture(p_force);
+    static private var g2d_asyncForce:Bool = false;
+    static private var g2d_asyncCallback:Void->Void;
+    static private var g2d_asyncTextureQueue:Array<GTexture>;
+    static public function invalidateAll(p_force:Bool, p_async:Bool = false, p_callback:Void->Void = null):Void {
+        if (p_async) {
+            g2d_asyncForce = p_force;
+            g2d_asyncCallback = p_callback;
+            g2d_asyncTextureQueue = new Array<GTexture>();
+            for (texture in g2d_textures) {
+                if (texture.getSourceType() != GTextureSourceType.TEXTURE) g2d_asyncTextureQueue.push(texture);
+            }
+            invalidateNextInQueue();
+        } else {
+		    for (texture in g2d_textures) {
+			    texture.invalidateNativeTexture(p_force);
+            }
+        }
+    }
+
+    static private function invalidateNextInQueue():Void {
+        if (g2d_asyncTextureQueue.length > 0) {
+            g2d_asyncTextureQueue.shift().invalidateNativeTexture(g2d_asyncForce);
+            g2d_context.callNextFrame(invalidateNextInQueue);
+        } else {
+            g2d_asyncCallback();
         }
     }
 	

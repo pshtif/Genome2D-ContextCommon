@@ -83,6 +83,8 @@ interface IGContext {
 
     function setBlendMode(p_blendMode:Int, p_premultiplied:Bool):Void;
 
+    function callNextFrame(p_callback:Void->Void):Void;
+
     function setRenderer(p_renderer:IGRenderer):Void;
 	function flushRenderer():Void;
 	function getRenderer():IGRenderer;
