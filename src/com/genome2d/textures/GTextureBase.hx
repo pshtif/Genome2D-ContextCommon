@@ -385,8 +385,12 @@ class GTextureBase implements IGPrototypable
 		if (g2d_onInvalidated != null) g2d_onInvalidated.removeAll();
     }
 
-    public function getAlphaAtUV(p_u:Float, p_v:Float):Float {
-		return 1;
+    public function getAlphaAtUV(p_u:Float, p_v:Float):Int {
+		return 255;
+    }
+
+    public function getColorAtUV(p_u:Float, p_v:Float):UInt {
+        return 0;
     }
 	
 	private function parentInvalidated_handler(p_texture:GTexture):Void {
