@@ -49,6 +49,8 @@ class GMouseInputType {
 	inline static public function fromNative(p_nativeType:String):String {
         var type:String = "";
         switch (p_nativeType) {
+            case "mousehweel":
+                type = MOUSE_WHEEL;
             case "mousemove" | "touchmove":
                 type = MOUSE_MOVE;
             case "mousedown" | "touchstart":
