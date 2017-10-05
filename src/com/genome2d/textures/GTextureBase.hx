@@ -279,6 +279,9 @@ class GTextureBase implements IGPrototypable
     }
 	
 	private var g2d_frame:GRectangle;
+    public function getFrame():GRectangle {
+        return (g2d_frame != null) ? g2d_frame.clone() : null;
+    }
 
     private var g2d_region:GRectangle;
 	/**
