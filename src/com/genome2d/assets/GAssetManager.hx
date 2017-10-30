@@ -97,6 +97,8 @@ class GAssetManager {
                 asset = new GImageAsset(this, p_url, p_id);
             case "xml" | "fnt":
                 asset = new GXmlAsset(this, p_url, p_id);
+            case "g3d":
+                asset = new GBinaryAsset(this, p_url, p_id);
 			default:
 				asset = new GTextAsset(this, p_url, p_id);
         }
