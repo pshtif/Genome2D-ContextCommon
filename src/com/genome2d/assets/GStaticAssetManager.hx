@@ -26,6 +26,11 @@ class GStaticAssetManager
 		if (g2d_instance == null) MGDebug.G2D_ERROR("No asset manager initialized.");
         return g2d_instance.getImageAssetById(p_id);
     }
+
+	static public function getBinaryAssetById(p_id:String):GBinaryAsset {
+		if (g2d_instance == null) MGDebug.G2D_ERROR("No asset manager initialized.");
+		return g2d_instance.getBinaryAssetById(p_id);
+	}
 	
 	static public function getTextAssetById(p_id:String):GTextAsset {
 		if (g2d_instance == null) MGDebug.G2D_ERROR("No asset manager initialized.");

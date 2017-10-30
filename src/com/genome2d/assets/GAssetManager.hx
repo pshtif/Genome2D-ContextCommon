@@ -84,6 +84,10 @@ class GAssetManager {
     public function getImageAssetById(p_id:String):GImageAsset {
         return cast g2d_references.get(p_id);
     }
+
+    public function getBinaryAssetById(p_id:String):GBinaryAsset {
+        return cast g2d_references.get(p_id);
+    }
 	
 	public function getTextAssetById(p_id:String):GTextAsset {
         return cast g2d_references.get(p_id);
