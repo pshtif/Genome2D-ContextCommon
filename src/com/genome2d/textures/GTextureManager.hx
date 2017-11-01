@@ -1,4 +1,5 @@
 package com.genome2d.textures;
+import js.html.ImageData;
 import com.genome2d.assets.GImageAsset;
 import com.genome2d.assets.GImageAssetType;
 import com.genome2d.context.IGContext;
@@ -160,6 +161,8 @@ class GTextureManager {
 		#elseif js
 		} else if (Std.is(p_source, ImageElement)) {
 			texture = new GTexture(g2d_context, p_id, p_source, p_format);
+		} else if (Std.is(p_source, ImageData)) {
+		    texture = new GTexture(g2d_context, p_id, p_source, p_format);
 		#end
 		// Create render texture
 		} else if (Std.is(p_source, GRectangle)) {
