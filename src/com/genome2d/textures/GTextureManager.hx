@@ -1,5 +1,4 @@
 package com.genome2d.textures;
-import js.html.ImageData;
 import com.genome2d.assets.GImageAsset;
 import com.genome2d.assets.GImageAssetType;
 import com.genome2d.context.IGContext;
@@ -15,6 +14,7 @@ import flash.utils.ByteArray;
 
 #if js
 import js.html.ImageElement;
+import js.html.ImageData;
 #end
 
 @:access(com.genome2d.textures.GTexture)
