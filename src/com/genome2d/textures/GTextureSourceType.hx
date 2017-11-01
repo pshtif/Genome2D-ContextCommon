@@ -17,4 +17,5 @@ enum GTextureSourceType {
     ATF_COMPRESSEDALPHA;
     TEXTURE;
 	IMAGE;
+    IMAGEDATA;
 }
