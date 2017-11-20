@@ -1,7 +1,9 @@
 package com.genome2d.debug;
 
 import haxe.PosInfos;
+#if flash
 import flash.Lib;
+#end
 import haxe.ds.StringMap;
 
 typedef Profile = {
@@ -35,8 +37,9 @@ class GProfiler {
     }
 
     static public function endMethodProfile(?pos:PosInfos):Void {
+        var endTime:Float = 0;
         #if flash
-        var endTime:Float = Lib.getTimer();
+        endTime = Lib.getTimer();
         #end
 
         if (!g2d_profiles.exists(pos.className) || !g2d_profiles.get(pos.className).exists(pos.methodName))
