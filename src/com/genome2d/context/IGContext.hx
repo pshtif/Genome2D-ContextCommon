@@ -10,12 +10,13 @@ package com.genome2d.context;
 
 #if flash
 typedef IGContext = com.genome2d.context.GStage3DContext;
-#elseif js
+#elseif (js && webglonly)
 typedef IGContext = com.genome2d.context.GWebGLContext;
 #else
 #if swc
 import flash.utils.Object;
 #end
+import com.genome2d.input.IGFocusable;
 import com.genome2d.context.filters.GFilter;
 import com.genome2d.geom.GMatrix3D;
 import com.genome2d.geom.GRectangle;
@@ -28,7 +29,7 @@ import com.genome2d.context.GCamera;
 /**
     Interface for all Genome2D contexts
 **/
-interface IGContext {
+interface IGContext extends IGFocusable {
     function hasFeature(p_feature:Int):Bool;
 	
 	var g2d_onMouseInputInternal:GMouseInput->Void;
@@ -73,15 +74,15 @@ interface IGContext {
     function begin():Bool;
     function end():Void;
 
-    function draw(p_texture:GTexture, p_x:Float, p_y:Float, p_scaleX:Float = 1, p_scaleY:Float = 1, p_rotation:Float = 0, p_red:Float = 1, p_green:Float = 1, p_blue:Float = 1, p_alpha:Float = 1, p_blendMode:Int = 1, p_filter:GFilter = null):Void;
+    function draw(p_texture:GTexture, p_blendMode:GBlendMode, p_x:Float, p_y:Float, p_scaleX:Float = 1, p_scaleY:Float = 1, p_rotation:Float = 0, p_red:Float = 1, p_green:Float = 1, p_blue:Float = 1, p_alpha:Float = 1, p_filter:GFilter = null):Void;
 
-    function drawSource(p_texture:GTexture, p_sourceX:Float, p_sourceY:Float, p_sourceWidth:Float, p_sourceHeight:Float, p_sourcePivotX:Float, p_sourcePivotY:Float, p_x:Float, p_y:Float, p_scaleX:Float = 1, p_scaleY:Float = 1, p_rotation:Float = 0, p_red:Float = 1, p_green:Float = 1, p_blue:Float = 1, p_alpha:Float = 1, p_blendMode:Int = 1, p_filter:GFilter = null):Void;
+    function drawSource(p_texture:GTexture, p_blendMode:GBlendMode, p_sourceX:Float, p_sourceY:Float, p_sourceWidth:Float, p_sourceHeight:Float, p_sourcePivotX:Float, p_sourcePivotY:Float, p_x:Float, p_y:Float, p_scaleX:Float = 1, p_scaleY:Float = 1, p_rotation:Float = 0, p_red:Float = 1, p_green:Float = 1, p_blue:Float = 1, p_alpha:Float = 1, p_filter:GFilter = null):Void;
 
-    function drawMatrix(p_texture:GTexture, p_a:Float, p_b:Float, p_c:Float, p_d:Float, p_tx:Float, p_ty:Float, p_red:Float = 1, p_green:Float = 1, p_blue:Float = 1, p_alpha:Float=1, p_blendMode:Int=1, p_filter:GFilter = null):Void;
+    function drawMatrix(p_texture:GTexture, p_blendMode:GBlendMode, p_a:Float, p_b:Float, p_c:Float, p_d:Float, p_tx:Float, p_ty:Float, p_red:Float = 1, p_green:Float = 1, p_blue:Float = 1, p_alpha:Float=1, p_filter:GFilter = null):Void;
 
-    function drawPoly(p_texture:GTexture, p_vertices:Array<Float>, p_uvs:Array<Float>, p_x:Float, p_y:Float, p_scaleX:Float = 1, p_scaleY:Float = 1, p_rotation:Float = 0, p_red:Float = 1, p_green:Float = 1, p_blue:Float = 1, p_alpha:Float = 1, p_blendMode:Int=1, p_filter:GFilter = null):Void;
+    function drawPoly(p_texture:GTexture, p_blendMode:GBlendMode, p_vertices:Array<Float>, p_uvs:Array<Float>, p_x:Float, p_y:Float, p_scaleX:Float = 1, p_scaleY:Float = 1, p_rotation:Float = 0, p_red:Float = 1, p_green:Float = 1, p_blue:Float = 1, p_alpha:Float = 1, p_filter:GFilter = null):Void;
 
-    function setBlendMode(p_blendMode:Int, p_premultiplied:Bool):Void;
+    function setBlendMode(p_blendMode:GBlendMode, p_premultiplied:Bool):Void;
 
     function callNextFrame(p_callback:Void->Void):Void;
 
@@ -94,7 +95,7 @@ interface IGContext {
     function clearStencil():Void;
     function renderToStencil(p_stencilLayer:Int):Void;
     function renderToColor(p_stencilLayer:Int):Void;
-    function setDepthTest(p_depthMask:Bool, p_compareMode:Dynamic):Void;
+    function setDepthTest(p_depthMask:Bool, p_depthFunc:GDepthFunc):Void;
     function getRenderTarget():GTexture;
 	function getRenderTargetMatrix():GMatrix3D;
     function setRenderTarget(p_texture:GTexture = null, p_transform:GMatrix3D = null, p_clear:Bool = false):Void;
