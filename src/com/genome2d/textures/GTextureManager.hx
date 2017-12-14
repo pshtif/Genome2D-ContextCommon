@@ -27,6 +27,7 @@ class GTextureManager {
     }
 
     static public var defaultFilteringType:GTextureFilteringType = GTextureFilteringType.LINEAR;
+    static public var useAsyncUpload:Bool = false;
 
     static private var g2d_textures:Map<String,GTexture>;
     static public function getAllTextures():Map<String,GTexture> {
@@ -170,6 +171,9 @@ class GTextureManager {
 		}
 
 		if (texture != null) {
+            #if flash
+            texture.useAsyncUpload = useAsyncUpload;
+            #end
 			texture.repeatable = p_repeatable;
 			texture.scaleFactor = p_scaleFactor;
 			texture.invalidateNativeTexture(false);
