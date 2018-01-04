@@ -80,7 +80,7 @@ class GTextureManager {
         g2d_textureAtlases.set(p_textureAtlas.id, p_textureAtlas);
     }
 
-    static private function removeTextureAtlas(p_textureAtlas:GTextureAtlas):Void {
+    static public function removeTextureAtlas(p_textureAtlas:GTextureAtlas):Void {
         g2d_textureAtlases.remove(p_textureAtlas.id);
     }
 
