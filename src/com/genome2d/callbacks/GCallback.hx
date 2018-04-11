@@ -28,6 +28,13 @@ class GCallback<TListener> {
         }
     }
 
+    public function addUnsafe(p_listener:TListener):Void {
+        if (p_listener != null) {
+            g2d_listeners.push(p_listener);
+            g2d_listenerCount++;
+        }
+    }
+
     public function addOnce(p_listener:TListener):Void {
         if (p_listener != null && g2d_listeners.indexOf(p_listener) == -1 && g2d_listenersOnce.indexOf(p_listener) == -1) {
             g2d_listenersOnce.push(p_listener);
