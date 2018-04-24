@@ -20,13 +20,15 @@ import com.genome2d.textures.GTextureSourceType;
 class GTextureBase implements IGPrototypable
 {
 	private var g2d_context:IGContext;
-	
+
+    private var g2d_disposed:Bool = false;
+
 	private var g2d_onInvalidated:GCallback1<GTexture>;
 
 	public var rotate:Bool = false;
 
     private var g2d_inverted:Bool = false;
-	
+
 	/**
 	 * 	Callback after the texture was invalidated on GPU
 	 */
@@ -37,7 +39,7 @@ class GTextureBase implements IGPrototypable
 		if (g2d_onInvalidated == null) g2d_onInvalidated = new GCallback1(GTexture);
         return g2d_onInvalidated;
     }
-	
+
 	private var g2d_onDisposed:GCallback1<GTexture>;
 	/**
 	 * 	Callback after the texture was disposed
@@ -49,12 +51,12 @@ class GTextureBase implements IGPrototypable
 		if (g2d_onDisposed == null) g2d_onDisposed = new GCallback1(GTexture);
         return g2d_onDisposed;
     }
-	
+
     private var g2d_dirty:Bool = true;
     inline public function isDirty():Bool {
         return g2d_dirty;
     }
-	
+
 	private var g2d_id:String;
 	/**
 	 * 	Id
@@ -102,7 +104,7 @@ class GTextureBase implements IGPrototypable
     inline private function set_pivotY(p_value:Float):Float {
         return g2d_pivotY = p_value / scaleFactor;
     }
-	
+
 	private var g2d_nativeWidth:Int;
 	/**
 	 * 	Native width
@@ -124,7 +126,7 @@ class GTextureBase implements IGPrototypable
     inline private function get_nativeHeight():Int {
         return g2d_nativeHeight;
     }
-	
+
 	/**
 	 * 	Width of the texture calculating with the scaleFactor
 	 */
@@ -183,7 +185,7 @@ class GTextureBase implements IGPrototypable
     public function getSourceType():GTextureSourceType {
         return g2d_sourceType;
     }
-	
+
 	private var g2d_format:String;
 	/**
 	 * 	Texture format
@@ -215,7 +217,7 @@ class GTextureBase implements IGPrototypable
     inline private function set_u(p_value:Float):Float {
         return g2d_u = p_value;
     }
-	
+
     private var g2d_v:Float;
 	/**
 	 * 	V
@@ -230,7 +232,7 @@ class GTextureBase implements IGPrototypable
     inline private function set_v(p_value:Float):Float {
         return g2d_v = p_value;
     }
-	
+
     private var g2d_uScale:Float;
 	/**
 	 * 	U scale
@@ -245,7 +247,7 @@ class GTextureBase implements IGPrototypable
     inline private function set_uScale(p_value:Float):Float {
         return g2d_uScale = p_value;
     }
-	
+
     private var g2d_vScale:Float;
 	/**
 	 * 	V scale
@@ -277,7 +279,7 @@ class GTextureBase implements IGPrototypable
         g2d_dirty = true;
         return p_value;
     }
-	
+
 	private var g2d_frame:GRectangle;
     public function getFrame():GRectangle {
         return (g2d_frame != null) ? g2d_frame.clone() : null;
@@ -306,15 +308,15 @@ class GTextureBase implements IGPrototypable
     }
 
     private var g2d_source:Dynamic;
-	
+
 	public function getSource():Dynamic {
         return g2d_source;
     }
-	
+
 	public function setSource(p_value:Dynamic):Dynamic {
 		g2d_source = p_value;
         return g2d_source;
-    }	
+    }
 
     public var premultiplied:Bool;
 
@@ -349,7 +351,7 @@ class GTextureBase implements IGPrototypable
 
         g2d_filteringType = GTextureManager.defaultFilteringType;
         setSource(p_source);
-		
+
 		GTextureManager.g2d_addTexture(cast this);
 	}
 
@@ -377,15 +379,18 @@ class GTextureBase implements IGPrototypable
         return false;
     }
 
-    public function dispose(p_disposeSource:Bool = false):Void {		
+    public function dispose(p_disposeSource:Bool = false):Void {
         g2d_source = null;
+        g2d_context = null;
         GTextureManager.g2d_removeTexture(cast this);
-		
+
 		if (g2d_onDisposed != null) {
 			g2d_onDisposed.dispatch(cast this);
 			g2d_onDisposed.removeAll();
 		}
 		if (g2d_onInvalidated != null) g2d_onInvalidated.removeAll();
+
+        g2d_disposed = true;
     }
 
     public function getAlphaAtUV(p_u:Float, p_v:Float):Int {
