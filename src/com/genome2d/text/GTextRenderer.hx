@@ -1,4 +1,5 @@
 package com.genome2d.text;
+import com.genome2d.context.GBlendMode;
 import com.genome2d.utils.GHAlignType;
 import com.genome2d.utils.GVAlignType;
 import com.genome2d.Genome2D;
@@ -9,13 +10,13 @@ class GTextRenderer {
     /*
      *  Blend mode used for rendering
      */
-    public var blendMode:Int = 1;
+    public var blendMode:GBlendMode;
 
     private var g2d_dirty:Bool = false;
     inline public function isDirty():Bool {
         return g2d_dirty;
     }
-	
+
 	private var g2d_fontScale:Float = 1;
     #if swc @:extern #end
     public var fontScale(get, set):Float;
@@ -196,6 +197,7 @@ class GTextRenderer {
     }
 
     public function new():Void {
+        blendMode = GBlendMode.NORMAL;
         g2d_vAlign = GVAlignType.TOP;
         g2d_hAlign = GHAlignType.LEFT;
         g2d_context = Genome2D.getInstance().getContext();
