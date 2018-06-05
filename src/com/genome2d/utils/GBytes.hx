@@ -160,6 +160,7 @@ class GBytes {
 
     private inline function g2d_setData(p_bytes:Bytes):Void {
         g2d_data.b = p_bytes.b;
+		g2d_data.length = p_bytes.length;
         g2d_length = p_bytes.length;
     }
 
@@ -171,11 +172,6 @@ class GBytes {
             bytes.blit(0, g2d_data, 0, g2d_length);
             g2d_length = bytes.length;
             g2d_setData(bytes);
-
-        }
-
-        if (g2d_length < p_size) {
-            g2d_data.length = g2d_length = p_size;
         }
     }
 
