@@ -299,10 +299,7 @@ class GTextureBase implements IGPrototypable
     inline private function set_region(p_value:GRectangle):GRectangle {
         g2d_region = p_value;
 
-        g2d_nativeWidth = Std.int(g2d_region.width);
-        g2d_nativeHeight = Std.int(g2d_region.height);
-
-        invalidateUV();
+        invalidateRegion();
 
         return g2d_region;
     }
@@ -355,6 +352,13 @@ class GTextureBase implements IGPrototypable
 		GTextureManager.g2d_addTexture(cast this);
 	}
 
+    private function invalidateRegion():Void {
+        g2d_nativeWidth = Std.int(g2d_region.width);
+        g2d_nativeHeight = Std.int(g2d_region.height);
+
+        invalidateUV();
+    }
+    
 	private function invalidateUV():Void {
 		g2d_u = g2d_region.x / gpuWidth;
 		g2d_v = g2d_region.y / gpuHeight;
