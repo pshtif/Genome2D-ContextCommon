@@ -33,6 +33,7 @@ class GMouseInput {
     public var nativeCaptured:Bool = false;
     public var delta:Int = 0;
 	public var time:Float = 0;
+	public var mouseOut:Bool = false;
 
     public function new(p_target:IGFocusable, p_dispatcher:IGFocusable, p_type:String, p_localX:Float, p_localY:Float) {
 		dispatcher = p_dispatcher;
@@ -56,6 +57,7 @@ class GMouseInput {
 		input.delta = delta;
 		input.camera = camera;
 		input.captured = captured;
+		input.mouseOut = mouseOut;
 		
 		return input;
 	}
