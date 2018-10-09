@@ -51,7 +51,7 @@ class GMouseInputType {
         switch (p_nativeType) {
             case "wheel":
                 type = MOUSE_WHEEL;
-            case "mousemove" | "touchmove":
+            case "mousemove" | "touchmove" | "mouseleave":
                 type = MOUSE_MOVE;
             case "mousedown" | "touchstart":
                 type = MOUSE_DOWN;
