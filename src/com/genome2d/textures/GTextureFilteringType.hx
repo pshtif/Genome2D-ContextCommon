@@ -15,4 +15,5 @@ enum GTextureFilteringType
 {
 	NEAREST;
 	LINEAR;
+	LINEAR_MIPMAP_LINEAR;
 }
