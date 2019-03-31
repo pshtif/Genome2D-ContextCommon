@@ -6,6 +6,7 @@
  *
  *	License:: ./doc/LICENSE.md (https://github.com/pshtif/Genome2D/blob/master/LICENSE.md)
  */
+ #if !cs
 package com.genome2d.context;
 
 import com.genome2d.context.GProjectionMatrix;
@@ -41,7 +42,8 @@ class GCamera {
 
     public var matrix:GProjectionMatrix;
 
-    public function new() {
+    public function new(p_context:IGContext) {
         matrix = new GProjectionMatrix();
     }
 }
+#end
