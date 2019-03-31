@@ -3,6 +3,9 @@ package com.genome2d.debug;
 import com.genome2d.callbacks.GCallback.GCallback3;
 import com.genome2d.debug.GDebugPriority;
 import haxe.PosInfos;
+#if cs
+import unityengine.*;
+#end
 
 class GDebug {
     static private var g2d_log:String = "";
@@ -154,6 +157,8 @@ class GDebug {
 		if (useNativeTrace) untyped __global__["trace"](p_msg);
 		#elseif js
 		if (useNativeTrace) untyped js.Browser.window.console.log(p_msg);
+        #elseif cs
+        if (useNativeTrace) Debug.Log(p_msg);
         #end
     }
 }
