@@ -140,7 +140,10 @@ class GTextureManager {
 				#elseif js
 				case GImageAssetType.IMAGEELEMENT:
 					texture = new GTexture(g2d_context, p_id, imageAsset.imageElement, p_format);
-				#end
+				#elseif cs
+                case GImageAssetType.UNITY:
+                    texture = new GTexture(g2d_context, p_id, imageAsset.nativeTexture, p_format);
+                #end
                 case _:
 			}
 		#if flash

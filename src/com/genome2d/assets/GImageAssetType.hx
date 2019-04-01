@@ -12,4 +12,5 @@ enum GImageAssetType {
     BITMAPDATA;
     ATF;
 	IMAGEELEMENT;
+    UNITY;
 }
