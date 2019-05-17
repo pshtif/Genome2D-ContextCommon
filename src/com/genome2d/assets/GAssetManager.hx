@@ -103,6 +103,8 @@ class GAssetManager {
                 asset = new GXmlAsset(this, p_url, p_id);
             case "g3d":
                 asset = new GBinaryAsset(this, p_url, p_id);
+            case "mp3":
+                asset = new GAudioAsset(this, p_url, p_id);
 			default:
 				asset = new GTextAsset(this, p_url, p_id);
         }
