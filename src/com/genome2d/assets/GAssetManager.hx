@@ -101,7 +101,7 @@ class GAssetManager {
                 asset = new GImageAsset(this, p_url, p_id);
             case "xml" | "fnt":
                 asset = new GXmlAsset(this, p_url, p_id);
-            case "g3d":
+            case "g3d" | "bytes":
                 asset = new GBinaryAsset(this, p_url, p_id);
             case "mp3":
                 asset = new GAudioAsset(this, p_url, p_id);
@@ -141,7 +141,6 @@ class GAssetManager {
         } else {
             g2d_loading = true;
             var asset:GAsset = g2d_loadQueue.shift();
-
             asset.onLoaded.addOnce(assetLoaded_handler);
             asset.onFailed.addOnce(assetFailed_handler);
             asset.load();
