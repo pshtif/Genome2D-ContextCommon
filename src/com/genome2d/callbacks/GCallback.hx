@@ -52,7 +52,7 @@ class GCallback<TListener> {
 		var index:Int = g2d_listeners.indexOf(p_listener);
         if (index >= 0) {
 			if (index <= g2d_iteratingDispatch) g2d_iteratingDispatch--;
-			g2d_listeners.remove(p_listener);
+			g2d_listeners.splice(index, 1);
 			g2d_listenerCount--;
 		} else {
 			g2d_listenersOnce.remove(p_listener);
