@@ -41,6 +41,10 @@ class GTextureManager {
     }
 
     static private function g2d_removeTexture(p_texture:GTexture):Void {
+        if (p_texture.id == null) {
+            return;
+        }
+        
         g2d_textures.remove(p_texture.id);
     }
 
@@ -81,6 +85,10 @@ class GTextureManager {
     }
 
     static public function removeTextureAtlas(p_textureAtlas:GTextureAtlas):Void {
+        if (p_textureAtlas.id == null) {
+            return;
+        }
+        
         g2d_textureAtlases.remove(p_textureAtlas.id);
     }
 
@@ -167,6 +175,9 @@ class GTextureManager {
 			texture = new GTexture(g2d_context, p_id, p_source, p_format);
 		} else if (Std.is(p_source, ImageData)) {
 		    texture = new GTexture(g2d_context, p_id, p_source, p_format);
+        #elseif cs
+		} else if (Std.is(p_source, unityengine.Texture2D)) {
+			texture = new GTexture(g2d_context, p_id, p_source, p_format);
 		#end
 		// Create render texture
 		} else if (Std.is(p_source, GRectangle)) {
