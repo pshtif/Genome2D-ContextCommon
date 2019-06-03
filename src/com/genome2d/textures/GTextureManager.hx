@@ -175,6 +175,9 @@ class GTextureManager {
 			texture = new GTexture(g2d_context, p_id, p_source, p_format);
 		} else if (Std.is(p_source, ImageData)) {
 		    texture = new GTexture(g2d_context, p_id, p_source, p_format);
+        #elseif cs
+		} else if (Std.is(p_source, unityengine.Texture2D)) {
+			texture = new GTexture(g2d_context, p_id, p_source, p_format);
 		#end
 		// Create render texture
 		} else if (Std.is(p_source, GRectangle)) {
