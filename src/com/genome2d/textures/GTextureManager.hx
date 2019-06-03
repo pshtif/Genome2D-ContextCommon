@@ -41,6 +41,10 @@ class GTextureManager {
     }
 
     static private function g2d_removeTexture(p_texture:GTexture):Void {
+        if (p_texture.id == null) {
+            return;
+        }
+        
         g2d_textures.remove(p_texture.id);
     }
 
@@ -81,6 +85,10 @@ class GTextureManager {
     }
 
     static public function removeTextureAtlas(p_textureAtlas:GTextureAtlas):Void {
+        if (p_textureAtlas.id == null) {
+            return;
+        }
+        
         g2d_textureAtlases.remove(p_textureAtlas.id);
     }
 
