@@ -11,6 +11,8 @@ package com.genome2d.utils;
 import com.genome2d.geom.GRectangle;
 #if flash
 import flash.display.BitmapData;
+#else
+import com.genome2d.assets.GImageAsset;
 #end
 
 class GPackerRectangle
@@ -61,7 +63,11 @@ class GPackerRectangle
     public var bottom:Int = 0;
 
     public var id:String;
+    #if flash
     public var source:BitmapData;
+    #else
+    public var source:GImageAsset;
+    #end
     public var pivotX:Float;
     public var pivotY:Float;
 
