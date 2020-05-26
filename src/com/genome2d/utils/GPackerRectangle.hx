@@ -9,6 +9,7 @@
 package com.genome2d.utils;
 
 import com.genome2d.geom.GRectangle;
+import com.genome2d.textures.GTexture;
 #if flash
 import flash.display.BitmapData;
 #else
@@ -28,6 +29,8 @@ class GPackerRectangle
 
     #if flash
     static public function get(p_x:Int, p_y:Int, p_width:Int, p_height:Int, p_id:String = null, p_source:BitmapData = null, p_pivotX:Float = 0, p_pivotY:Float = 0):GPackerRectangle {
+    #elseif cs
+    static public function get(p_x:Int, p_y:Int, p_width:Int, p_height:Int, p_id:String = null, p_source:GTexture = null, p_pivotX:Float = 0, p_pivotY:Float = 0):GPackerRectangle {
     #else
     static public function get(p_x:Int, p_y:Int, p_width:Int, p_height:Int, p_id:String = null, p_source:GImageAsset = null, p_pivotX:Float = 0, p_pivotY:Float = 0):GPackerRectangle {
     #end
@@ -65,6 +68,8 @@ class GPackerRectangle
     public var id:String;
     #if flash
     public var source:BitmapData;
+    #elseif cs
+    public var source:GTexture;
     #else
     public var source:GImageAsset;
     #end
