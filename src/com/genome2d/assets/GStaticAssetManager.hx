@@ -11,6 +11,26 @@ class GStaticAssetManager
 	static public function setInstance(p_instance:GAssetManager):Void {
 		g2d_instance = p_instance;
 	}
+
+	static public var useParallelLoading(get,set):Bool;
+
+	static private function get_useParallelLoading() {
+		return g2d_instance.useParallelLoading;
+	}
+
+	static private function set_useParallelLoading(p_use) {
+		return g2d_instance.useParallelLoading = p_use;
+	}
+
+	static public var maxParallelLoading(get,set):Int;
+	
+	static private function get_maxParallelLoading() {
+		return g2d_instance.maxParallelLoading;
+	}
+
+	static private function set_maxParallelLoading(p_max) {
+		return g2d_instance.maxParallelLoading = p_max;
+	}
 	
 	static public function getAssetById(p_id:String):GAsset {
 		if (g2d_instance == null) MGDebug.G2D_ERROR("No asset manager initialized.");

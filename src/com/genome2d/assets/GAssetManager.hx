@@ -36,6 +36,10 @@ class GAssetManager {
 	
     public var ignoreFailed:Bool = false;
 
+    public var useParallelLoading:Bool = false;
+    public var maxParallelLoading:Int = 1;
+    private var g2d_currentlyLoading:Int = 0;
+
     private var g2d_references:Map<String,GAsset>;
     public function getAssets():Map<String,GAsset> {
         return g2d_references;
@@ -124,10 +128,17 @@ class GAssetManager {
 	}
 
     public function loadQueue(p_successHandler:Void->Void, p_failedHandler:GAsset->Void = null):Bool {
-        if (!g2d_loading) {
+        if (!g2d_loading && g2d_loadQueue.length>0) {
 			if (p_successHandler != null) onQueueLoaded.addOnce(p_successHandler);
-			if (p_failedHandler != null) onQueueFailed.addOnce(p_failedHandler);
-			g2d_loadQueueNext();
+            if (p_failedHandler != null) onQueueFailed.addOnce(p_failedHandler);
+            g2d_loading = true;
+            if (useParallelLoading) {
+                for (i in 0...maxParallelLoading) {
+                    g2d_loadQueueNext();
+                }
+            } else {
+                g2d_loadQueueNext();
+            }
 			return true;
 		}
 		
@@ -135,11 +146,8 @@ class GAssetManager {
     }
 
     private function g2d_loadQueueNext():Void {
-        if (g2d_loadQueue.length==0) {
-            g2d_loading = false;
-            g2d_onQueueLoaded.dispatch();
-        } else {
-            g2d_loading = true;
+        if (g2d_loadQueue.length!=0) {
+            g2d_currentlyLoading++;
             var asset:GAsset = g2d_loadQueue.shift();
             asset.onLoaded.addOnce(assetLoaded_handler);
             asset.onFailed.addOnce(assetFailed_handler);
@@ -148,10 +156,19 @@ class GAssetManager {
     }
 
     private function assetLoaded_handler(p_asset:GAsset):Void {
-        g2d_loadQueueNext();
+        g2d_currentlyLoading--;
+        if (g2d_loadQueue.length==0) {
+            if (g2d_currentlyLoading == 0) {
+                g2d_loading = false;
+                g2d_onQueueLoaded.dispatch();
+            }
+        } else {
+            g2d_loadQueueNext();
+        }
     }
 
     private function assetFailed_handler(p_asset:GAsset):Void {
+        g2d_currentlyLoading--;
         g2d_onQueueFailed.dispatch(p_asset);
         if (ignoreFailed) g2d_loadQueueNext();
     }
