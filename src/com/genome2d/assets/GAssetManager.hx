@@ -126,7 +126,7 @@ class GAssetManager {
 	private function addToQueue(p_asset:GAsset):Void {
         g2d_loadQueue.push(p_asset);
         
-        if (g2d_loading && g2d_currentlyLoading<maxParallelLoading) {
+        if (g2d_loading && useParallelLoading && g2d_currentlyLoading<maxParallelLoading) {
             g2d_loadQueueNext();
         }
 	}
