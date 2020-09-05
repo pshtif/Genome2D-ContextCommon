@@ -188,13 +188,15 @@ class GMaxRectPacker
             area = next;
         }
         if (valid) {
-            /**/
+            /*
+            */
             area = GPackerRectangle.get(p_x, p_y, p_width, p_height);
             if (g2d_newBoundingArea.x < p_x) g2d_newBoundingArea.x = p_x;
             if (g2d_newBoundingArea.right > area.right) g2d_newBoundingArea.right = area.right;
             if (g2d_newBoundingArea.y < p_y) g2d_newBoundingArea.y = p_y;
             if (g2d_newBoundingArea.bottom < area.bottom) g2d_newBoundingArea.bottom = area.bottom;
-            /**/
+            /*
+            */
             if (g2d_lastNewArea != null) {
                 area.g2d_previous = g2d_lastNewArea;
                 g2d_lastNewArea.g2d_next = area;
@@ -271,7 +273,8 @@ class GMaxRectPacker
             }
             availableArea = nextAvailableArea;
         }
-    /**/
+    /*
+    */
 
         while (g2d_firstNewArea != null) {
             var area:GPackerRectangle = g2d_firstNewArea;
