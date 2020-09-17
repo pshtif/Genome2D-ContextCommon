@@ -73,6 +73,10 @@ class GMaxRectPacker
         g2d_heuristics = p_heuristics;
     }
 
+    public function packRectangleFixed(p_rect:GPackerRectangle) {
+        g2d_addRectangleFixed(p_rect);
+    }
+
     public function packRectangle(p_rect:GPackerRectangle, p_padding:Int = 0, p_forceValidTextureSize:Bool = true):Bool {
         var success:Bool = g2d_addRectangle(p_rect, p_padding);
 
@@ -165,6 +169,13 @@ class GMaxRectPacker
             g2d_rectangles.push(p_rect);
         }
         return area != null;
+    }
+
+    inline private function g2d_addRectangleFixed(p_rect:GPackerRectangle) {
+        g2d_splitAvailableAreas(p_rect);
+        g2d_pushNewAreas();
+
+        g2d_rectangles.push(p_rect);
     }
     
     inline private function g2d_createNewArea(p_x:Int, p_y:Int, p_width:Int, p_height:Int):GPackerRectangle {
