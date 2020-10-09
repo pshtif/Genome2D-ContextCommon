@@ -52,12 +52,12 @@ class GAssetManager {
         return g2d_loading;
     }
 
-    private var g2d_onAssetLoaded:GCallback1<GAsset>;
+    private var g2d_onAssetLoading:GCallback1<GAsset>;
     #if swc @:extern #end
-    public var onAssetLoaded(get,never):GCallback1<GAsset>;
-    #if swc @:getter(onAssetLoaded) #end
-    inline private function get_onAssetLoaded():GCallback1<GAsset> {
-        return g2d_onAssetLoaded;
+    public var onAssetLoading(get,never):GCallback1<GAsset>;
+    #if swc @:getter(onAssetLoading) #end
+    inline private function get_onAssetLoading():GCallback1<GAsset> {
+        return g2d_onAssetLoading;
     }
 
     private var g2d_onQueueLoaded:GCallback0;
@@ -81,7 +81,7 @@ class GAssetManager {
         g2d_loadQueue = new Array<GAsset>();
         g2d_references = new Map<String,GAsset>();
 
-        g2d_onAssetLoaded = new GCallback1(GAsset);
+        g2d_onAssetLoading = new GCallback1(GAsset);
         g2d_onQueueLoaded = new GCallback0();
         g2d_onQueueFailed = new GCallback1(GAsset);
     }
@@ -162,6 +162,7 @@ class GAssetManager {
         if (g2d_loadQueue.length!=0) {
             g2d_currentlyLoading++;
             var asset:GAsset = g2d_loadQueue.shift();
+            g2d_onAssetLoading.dispatch(asset);
             asset.onLoaded.addOnce(assetLoaded_handler);
             asset.onFailed.addOnce(assetFailed_handler);
             asset.load();
@@ -170,7 +171,6 @@ class GAssetManager {
 
     private function assetLoaded_handler(p_asset:GAsset):Void {
         g2d_currentlyLoading--;
-        g2d_onAssetLoaded.dispatch(p_asset);
         if (g2d_loadQueue.length==0) {
             if (g2d_currentlyLoading == 0) {
                 g2d_loading = false;
