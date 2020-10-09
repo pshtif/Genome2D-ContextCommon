@@ -159,7 +159,7 @@ class GAssetManager {
     }
 
     private function g2d_loadQueueNext():Void {
-        if (g2d_loadQueue.length!=0) {
+        if (g2d_loadQueue.length>0) {
             g2d_currentlyLoading++;
             var asset:GAsset = g2d_loadQueue.shift();
             g2d_onAssetLoading.dispatch(asset);
@@ -184,7 +184,12 @@ class GAssetManager {
     private function assetFailed_handler(p_asset:GAsset):Void {
         g2d_currentlyLoading--;
         g2d_onQueueFailed.dispatch(p_asset);
-        if (ignoreFailed) g2d_loadQueueNext();
+        if (ignoreFailed && g2d_loadQueue.length>0) {
+             g2d_loadQueueNext();
+        } else {
+            if (g2d_currentlyLoading == 0)
+                g2d_loading = false;
+        }
     }
 
     public function generate(p_scaleFactor:Float = 1, p_overwrite:Bool = false):Void {
