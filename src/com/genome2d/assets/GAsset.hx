@@ -91,6 +91,10 @@ class GAsset
     public function load():Void {
 
     }
+
+    public function cancel():Void {
+        g2d_loading = false;
+    }
 	
 	public function toReference():String {
 		return null;
