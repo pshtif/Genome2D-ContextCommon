@@ -125,6 +125,13 @@ class GAssetManager {
 		if (asset != null) addToQueue(asset);
 		return asset;
     }
+
+    public function remove(p_asset:GAsset) {
+        if (g2d_loadQueue.indexOf(p_asset) != -1) {
+            g2d_loadQueue.remove(p_asset);
+            g2d_references.remove(p_asset.id);
+        }
+    }
 	
 	public function disposeAssets():Void {
 		for (asset in g2d_references) {
@@ -138,7 +145,7 @@ class GAssetManager {
         if (g2d_loading && useParallelLoading && g2d_currentlyLoading<maxParallelLoading) {
             g2d_loadQueueNext();
         }
-	}
+    }
 
     public function loadQueue(p_successHandler:Void->Void, p_failedHandler:GAsset->Void = null):Bool {
         if (!g2d_loading && g2d_loadQueue.length>0) {
