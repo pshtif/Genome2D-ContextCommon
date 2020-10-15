@@ -98,7 +98,7 @@ class GTextureManager {
 
     static public function disposeAll(p_disposeSource:Bool = false):Void {
         for (texture in g2d_textures) {
-            #if js
+            #if !flash
             if (texture == null) continue;
             #end
             GDebug.info(texture.id);
